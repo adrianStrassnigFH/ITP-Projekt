@@ -63,3 +63,14 @@ document.querySelectorAll('.faq-question').forEach(question => {
     });
 });
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------LOGIN AND REGISTER------------------------------------------
+function switchLogin(currentForm){
+    if(currentForm === 'login'){
+        document.getElementById("login").setAttribute("hidden", "");
+        document.getElementById("register").removeAttribute("hidden");
+    }
+    if(currentForm === 'register'){
+        document.getElementById("register").setAttribute("hidden", "");
+        document.getElementById("login").removeAttribute("hidden");
+    }
+}

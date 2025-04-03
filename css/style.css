@@ -163,3 +163,69 @@ h1{
     padding-bottom:10px;
     font-size:1.2rem;
 }
+/*-------------------------------FORM PAGE--------------------------------*/
+#form{
+    background-color: #0b001e;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -6vh;
+
+
+}
+#form h2{
+    font-size: 4vw;
+}
+#logo{
+    width:25vh;
+}
+input{
+    background-color: #0b001e;
+    text-shadow:none;
+    border-radius: 5px;
+    margin: 2vh ;
+    padding: 20px;
+    min-width:fit-content;
+    box-shadow: 2px 2px 2px #dd00dd;
+
+}
+input:hover{
+    transform:scale(1.05);
+    transition:0.5s all ease;
+}
+input:focus{
+    transform:scale(1.05);
+    border: 3px solid #dd00dd;
+}
+
+#login, #register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 25vw;
+    padding: 5vh;
+    margin: 2vh ;
+
+}
+.switch-button, .submit-button{
+    margin-top:3vh;
+    background-color: #0b001e;
+    color: white;
+    border: none;
+    padding: 1vh;
+    font-size: 2vh;
+
+
+}
+.switch-button:hover, .submit-button:hover{
+    color: #dd00dd;
+    text-shadow: -1px -1px 0 #dd00dd;
+    transform:scale(1.05);
+    transition:0.5s all ease;
+}
+/*------------------------------------------------------------------*/
