@@ -7,8 +7,8 @@
 }
 .hidden{
     opacity: 0;
-    transition:0.5s all ease;
-    filter: blur(3px);
+    transition:0.7s all ease;
+
     transform: translateY(-20px);
 }
 .show{
@@ -42,10 +42,10 @@
     margin-top : -60px;
     display: grid;
     place-items: center;
-    align-items: center;
-    justify-content: center;
 
-    font-weight: 700;
+
+
+
 
 }
 
@@ -97,6 +97,8 @@
     margin:3vw;
     background-color: #0b001e;
     height: 50vh;
+    box-shadow: 3px 3px 0 #dd00dd;
+    border-radius: 10px;
 }
 .game:hover {
     transform: scale(1.05); /* Slightly enlarges the element */
@@ -125,6 +127,8 @@
     display: flex;
     justify-content: center;
     background-color: #0b001e;
+    box-shadow: 3px 3px 0 #dd00dd;
+    border-radius: 10px;
 }
 #leaderboard:hover{
     transform: scale(1.05); /* Slightly enlarges the element */
@@ -148,10 +152,11 @@ h1{
 }
 .faq-item{
     width:50%;
-    border: 1px solid pink;
+    border: 1px solid white;
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
+    box-shadow: 3px 3px 0 #dd00dd;
 }
 .faq-item:hover{
     transform: scale(1.05);
@@ -229,3 +234,35 @@ input:focus{
     transition:0.5s all ease;
 }
 /*------------------------------------------------------------------*/
+/*-------------------------------IMPRESSUM-----------------------------------*/
+.impressum-page{
+    margin-top:-6vh;
+    background-color: #0b001e;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.impressum{
+    width:40%;
+}
+.impressum-element{
+    min-width:fit-content;
+    margin-bottom:5vh;
+    border: 1px solid white;
+    box-shadow: 3px 3px 0 #dd00dd;
+    border-radius: 15px;
+    padding: 20px;
+}
+.impressum-element:hover{
+    transform: scale(1.05);
+    z-index: 1;
+    transition:0.5s all ease;
+    cursor: pointer;
+}
+.impressum h1{
+    display: flex;
+    justify-content: center;
+
+}
