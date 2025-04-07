@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
 </head>
+
 <body id="form-page">
+
 <div id="form">
-<!--<img src="./homepage/img/fh-spielwelt-logo.png" alt="logo" id="logo">-->
 <form action="" id="login" class="hidden">
 
     <h2>Login</h2>
