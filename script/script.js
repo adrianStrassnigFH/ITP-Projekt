@@ -3,7 +3,7 @@
 
 function loadPage(page){
     //go to the directory and choose the
-    fetch("./"+page+"/"+page+".php")
+    fetch("./"+page+"/"+page+".html")
     .then(response => response.text())
     .then(html => {
         document.getElementById("content").innerHTML = html;

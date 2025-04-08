@@ -5,13 +5,6 @@
     // Create the database connection
     $db_obj = new mysqli($host, $user, $password, $database);
 
-    // Check if the connection is successful
-    if ($db_obj->connect_error) {
-        echo "Connection Error: " . $db_obj->connect_error;
-        exit();
-    } else {
-        echo "Connection worked";
-    }
 ?>
 
 <!doctype html>
@@ -26,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
     <title>Document</title>
 </head>
 <body>
