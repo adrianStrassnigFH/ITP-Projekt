@@ -1,3 +1,19 @@
+<?php
+    // Including the file that contains your DB connection details
+    require_once ('./DbAccessCredentials/dbaccess.php');
+
+    // Create the database connection
+    $db_obj = new mysqli($host, $user, $password, $database);
+
+    // Check if the connection is successful
+    if ($db_obj->connect_error) {
+        echo "Connection Error: " . $db_obj->connect_error;
+        exit();
+    } else {
+        echo "Connection worked";
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
