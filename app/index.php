@@ -1,29 +1,20 @@
-<?php
-    // Including the file that contains your DB connection details
-    require_once ('./DbAccessCredentials/dbaccess.php');
-
-    // Create the database connection
-    $db_obj = new mysqli($host, $user, $password, $database);
-
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
+    <title>FH Spielewelt</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
 </head>
 <body>
-<nav id="navbar" class="navbar navbar-dark sticky-top navbar-expand-lg">
+<nav id="navbar" class="navbar navbar-dark fixed-top navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">FH SPIELWELT</a>
 
@@ -59,11 +50,10 @@
     loading..
 </div>
 
-<script src="./script/script.js"></script>
-<script src="./script/homepage_script.js"></script>
+<script src="main_script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 <footer class="bg-dark text-white text-center py-3">
-    &copy; 2025 FH SPIELWELT | <a href="#" class="text-white text-decoration-none">Impressum</a> | <a href="#" class="text-white text-decoration-none">Datenschutz</a>
+    &copy; 2025 FH SPIELWELT | <a onclick="loadPage('impressum')" href="#" class="text-white text-decoration-none">Impressum</a> | <a onclick="loadPage('impressum')" href="#" class="text-white text-decoration-none">Datenschutz</a>
 </footer>
 </html>

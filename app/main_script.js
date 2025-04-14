@@ -1,0 +1,58 @@
+
+
+// ALL PAGES: "PAGE_KEY": ["PATH_TO_WEBSITE", "PATH_TO_SCRIPT"|null, "TITLE"]
+const pages_dictionary = {
+    "homepage": ["homepage/homepage.html","homepage/homepage_script.js","Homepage"],
+    "faq": ["faq/faq.html","faq/faq_script.js","FAQ"],
+    "impressum": ["impressum/impressum.html",null,"Impressum"],
+    "login": ["login/login.html",null,"Login"],
+    "register": ["register/register.html",null,"Register"],
+}
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+
+        }else{
+            entry.target.classList.remove("show");
+        }
+    })
+})
+//
+// ---------------------dynamic loading of the page-----------------------------------------------
+
+function loadPage(pageKey){
+
+    if(pages_dictionary[pageKey] === undefined){
+        console.error("Page key is missing");
+        return;
+    }
+
+    document.title = pages_dictionary[pageKey][2];
+    fetch(pages_dictionary[pageKey][0])
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("content").innerHTML = html;
+
+        if(pages_dictionary[pageKey][1] !== undefined && pages_dictionary[pageKey][1] !== null) {
+            const script = document.createElement("script");
+            script.src = pages_dictionary[pageKey][1];
+            document.body.appendChild(script);
+        }
+        animation();
+    })
+    .catch(error => {
+        document.getElementById("content").innerHTML = "<p>Page not found.</p>";
+        });
+}
+
+
+function animation(){
+    const hiddenElements = document.querySelectorAll(".hidden");
+    hiddenElements.forEach(el => observer.observe(el));
+
+}
+
+
+loadPage("homepage");
