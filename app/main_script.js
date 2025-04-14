@@ -6,7 +6,7 @@ const pages_dictionary = {
     "faq": ["faq/faq.html","faq/faq_script.js","FAQ"],
     "impressum": ["impressum/impressum.html",null,"Impressum"],
     "login": ["login/login.html",null,"Login"],
-    "register": ["register/register.html",null,"Register"],
+    "register": ["register/register.html","register/register_script.js","Register"],
 }
 
 const observer = new IntersectionObserver(entries => {
