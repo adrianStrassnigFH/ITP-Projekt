@@ -1,5 +1,6 @@
 <?php
 $host = "localhost";
-$user = "admin";
-$password = "123";
+$user = "phpmyadmin";
+$password = "2711";
 $database = "Spielewelt";
+?>

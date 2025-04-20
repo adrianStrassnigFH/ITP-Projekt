@@ -1,3 +1,7 @@
+<?php
+require_once ('../api/dbaccess.php');
+require('../api/auth/dbconnect.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
