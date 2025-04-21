@@ -1,6 +1,5 @@
 
-function handleRegister(event){
-    console.log("register event");
+async function handleRegister(){
     const formData = new FormData();
     const fname = document.getElementById("fname").value.trim();
     const lname = document.getElementById("lname").value.trim();
@@ -23,15 +22,22 @@ function handleRegister(event){
     formData.append("email", email);
     formData.append("password", password);
 
+    try{
+        let response = await fetch("/api/auth/register.php", {
+            method: "POST",
+            body: formData,
+        })
 
-    fetch("/api/auth/register.php", {
-        method: "POST",
-        body: formData,
-    }).then(response)
-
-    // TODO server api call registration
-
-    // TODO login
+        response = await response.json();
+        if(response.success){
+            login(response.userID);
+        }
+        else{
+            alert(response.error);
+        }
+    }catch(error){
+        console.error("Registration failed: ", error);
+    }
 }
 
 

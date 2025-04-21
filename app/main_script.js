@@ -55,6 +55,12 @@ function animation(){
 
 }
 
+function login(userID){
+    sessionStorage.setItem("userID",userID);
+    updateNavbar();
+    loadPage("homepage")
+}
+
 function logout(){
     sessionStorage.removeItem("userID");
     console.log("logout");

@@ -1,35 +1,41 @@
 <?php
 
-require_once "../dbaccess.php";
+require_once "../database/dbconnect.php";
+require_once "../helper.php";
+
+header("Content-Type: application/json");
+$response = [];
 
 $fname = test_input($_POST["fname"]);
 $lname = test_input($_POST["lname"]);
 $email = test_input($_POST["email"]);
 $password = test_input($_POST["password"]);
-$registerSuccess = TRUE;
 
 // Check if all filter have been passed
-if($fname && $lname && $email  && $password ){
-    $registerSuccess = FALSE;
+if(!$fname || !$lname || !$email || !$password){
+    $response["error"] = "Missing required fields.";
+    echo json_encode($response);
+    exit;
 }
 
-if(isUsernameTaken($username,$connection)){
-    $_GET["usernameError"] = true;
-    $registerSuccess = false;
+if(isEmailTaken($email, $db_obj)){
+    $response["error"] = "Email is already taken.";
+    echo json_encode($response);
+    exit;
 }
 
 
-if(!$registerSuccess) {
-    $_GET["page"]="REGISTER";
-    $_GET["actionFailure"] = true;
+$stmt = $db_obj->prepare("INSERT INTO User (isAdmin, Email, Password, FirstName, LastName) VALUES (?, ?, ?, ?, ?)");
+$dbPassword = password_hash($password,PASSWORD_DEFAULT);
+$dbIsAdmin = 0;
+$stmt->bind_param("issss", $dbIsAdmin, $email,$dbPassword,$fname, $lname);
+if ($stmt->execute()) {
+    $response["success"] = true;
+    $response["userID"] = $db_obj->insert_id;
+} else {
+    $response["error"] = "Database error: " . $stmt->error;
 }
-else{
-    $stmt = $connection->prepare("INSERT INTO users (username, password, email, isAdmin, isActive, fname, lname, salutationID_FK) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $dbPassword = password_hash($password,PASSWORD_DEFAULT);
-    $dbIsAdmin = 0;
-    $dbIsActive = 1;
-    $stmt->bind_param("sssiissi", $username, $dbPassword, $email, $dbIsAdmin, $dbIsActive, $fname, $lname, $salutation);
-    $stmt->execute();
-    $stmt->close();
-    make_login($username);
-}
+
+$stmt->close();
+echo json_encode($response);
+exit;

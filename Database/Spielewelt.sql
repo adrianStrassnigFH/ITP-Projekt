@@ -92,20 +92,6 @@ INSERT INTO `GameDifficulty` (`GameID`, `DifficultyID`) VALUES
 --
 
 DROP TABLE IF EXISTS `Salutation`;
-CREATE TABLE `Salutation` (
-  `SalutationID` int(11) NOT NULL,
-  `Salutation` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Salutation`
---
-
-INSERT INTO `Salutation` (`SalutationID`, `Salutation`) VALUES
-(0, 'Herr'),
-(1, 'Frau'),
-(2, 'Divers'),
-(3, 'Keine Angabe');
 
 -- --------------------------------------------------------
 
@@ -141,7 +127,6 @@ CREATE TABLE `User` (
   `isAdmin` tinyint(1) NOT NULL,
   `Email` text NOT NULL,
   `Password` text NOT NULL,
-  `SalutationID_FK` int(11) NOT NULL,
   `FirstName` text NOT NULL,
   `LastName` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -150,8 +135,8 @@ CREATE TABLE `User` (
 -- Dumping data for table `User`
 --
 
-INSERT INTO `User` (`UserID`, `isAdmin`, `Email`, `Password`, `SalutationID_FK`, `FirstName`, `LastName`) VALUES
-(1, 0, 'nawlokad@gmail.com', 'dalksj', 0, 'David', 'Nawloka');
+INSERT INTO `User` (`UserID`, `isAdmin`, `Email`, `Password`, `FirstName`, `LastName`) VALUES
+(1, 0, 'nawlokad@gmail.com', 'dalksj', 'David', 'Nawloka');
 
 --
 -- Indexes for dumped tables
@@ -176,12 +161,6 @@ ALTER TABLE `GameDifficulty`
   ADD PRIMARY KEY (`GameID`,`DifficultyID`);
 
 --
--- Indexes for table `Salutation`
---
-ALTER TABLE `Salutation`
-  ADD PRIMARY KEY (`SalutationID`);
-
---
 -- Indexes for table `Scoreboard`
 --
 ALTER TABLE `Scoreboard`
@@ -191,8 +170,7 @@ ALTER TABLE `Scoreboard`
 -- Indexes for table `User`
 --
 ALTER TABLE `User`
-  ADD PRIMARY KEY (`UserID`),
-  ADD KEY `Salutation_FK_Relation` (`SalutationID_FK`);
+  ADD PRIMARY KEY (`UserID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -232,8 +210,6 @@ ALTER TABLE `Scoreboard`
 --
 -- Constraints for table `User`
 --
-ALTER TABLE `User`
-  ADD CONSTRAINT `Salutation_FK_Relation` FOREIGN KEY (`SalutationID_FK`) REFERENCES `Salutation` (`SalutationID`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
