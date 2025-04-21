@@ -5,8 +5,9 @@ const pages_dictionary = {
     "homepage": ["homepage/homepage.html","homepage/homepage_script.js","Homepage"],
     "faq": ["faq/faq.html","faq/faq_script.js","FAQ"],
     "impressum": ["impressum/impressum.html",null,"Impressum"],
-    "login": ["login/login.html",null,"Login"],
+    "login": ["login/login.html","login/login_script.js","Login"],
     "register": ["register/register.html","register/register_script.js","Register"],
+    "profile": ["profile/profile.html",null,"Profile"],
 }
 
 const observer = new IntersectionObserver(entries => {
@@ -54,5 +55,37 @@ function animation(){
 
 }
 
+function logout(){
+    sessionStorage.removeItem("userID");
+    console.log("logout");
+}
+
+function isLoggedIn(){
+    return sessionStorage.getItem("userID") !== null;
+}
+
+function updateNavbar(){
+    if(!isLoggedIn()) return;
+
+    let loginLink = document.getElementById("login-link");
+    loginLink.innerText = "Profile";
+    loginLink.onclick = () => {loadPage("profile")}
+
+    let navBar = document.getElementById("navbar-links");
+    let logoutLinkLi = document.createElement("li");
+    logoutLinkLi.classList.add("nav-item");
+
+    let logoutLink = document.createElement("a");
+    logoutLink.classList.add("nav-link");
+    logoutLink.innerText = "Logout";
+    logoutLink.href = "#";
+    logoutLink.onclick = () => {
+        logout();
+    }
+
+    logoutLinkLi.appendChild(logoutLink);
+    navBar.appendChild(logoutLinkLi);
+}
 
 loadPage("homepage");
+updateNavbar();

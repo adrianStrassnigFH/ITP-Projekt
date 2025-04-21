@@ -1,4 +1,7 @@
 <?php
+
+require_once "../dbaccess.php";
+
 $fname = test_input($_POST["fname"]);
 $lname = test_input($_POST["lname"]);
 $email = test_input($_POST["email"]);
