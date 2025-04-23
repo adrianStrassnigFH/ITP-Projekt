@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+    font-family: "Press Start 2P", Arial, sans-serif;
+}
+
+body {
+    text-align: center;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+#title {
+    color: violet;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #9900cc;
+}
+
+#reset-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: #cc66ff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-family: "Press Start 2P", Arial, sans-serif;
+}
+
+#reset-button:hover {
+    background-color: #9900cc;
+}
+
+#game {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box.initial {
+    border: 5px solid grey;
+    border-style: outset;
+    cursor: pointer;
+}
+
+.box.bomb-count-1 { color: blue }
+.box.bomb-count-2 { color: green }
+.box.bomb-count-3 { color: red }
+.box.bomb-count-4 { color: darkblue }
+.box.bomb-count-5 { color: brown }
+.box.bomb-count-6 { color: turquoise }
+.box.bomb-count-7 { color: black }
+.box.bomb-count-8 { color: white }
+
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#popup-content {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#timer {
+    font-size: 18px;
+    margin: 15px 0;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+@keyframes explosion {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.box.mine-exploded {
+    background-color: #ff4444;
+    animation: explosion 0.3s ease-out;
+}

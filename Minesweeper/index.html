@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Minesweeper</title>
+</head>
+<body>
+<h1 id="title">MINESWEEPER</h1>
+<div id="controls">
+
+  <label>Field Size:
+    <select id="field-size">
+      <option value="8">8x8</option>
+      <option value="10">10x10</option>
+      <option value="12">12x12</option>
+      <option value="16">16x16</option>
+    </select>
+  </label>
+
+  <button id="reset-button">Reset Game</button>
+</div>
+
+<div id="timer"></div>
+<div id="game"></div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
