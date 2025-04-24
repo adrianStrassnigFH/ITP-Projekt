@@ -262,3 +262,68 @@ input:focus{
 
 }
 /*MS ganz*/
+
+
+
+/*------------------------------------------------------------------*/
+/*-------------------------------Profile-----------------------------------*/
+
+#OuterContainer{
+    width: 100%;
+    height: 100vh;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0b001e;
+
+}
+#InnerContainer{
+    margin: 10vh ;
+    padding-top: 100px;
+    border-left: 1px solid #dd00dd;
+}
+
+.games{
+    background-color: #0b001e;
+    border: none;
+    border: 1px solid #dd00dd;
+    border-radius: 5px;
+}
+
+#ScoreContainer{
+    border: 1px solid #dd00dd;
+    border-radius: 5px;
+    min-height: 20vh;
+}
+
+#EditDiv{
+    text-align: right;
+}
+#EditBtn{
+    padding: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-radius: 5px;
+    border: 1px solid #dd00dd;
+    background-color: #0b001e;
+}
+
+#UserFirstName, #UserLastName, #UserEmail{
+    padding-left: 3%;
+    font-size: small;
+
+}
+
+#LogoImg{
+    max-width: 20%;
+    border-radius: 5px;
+}
+#WelcomeDiv{
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+}
+#WelcomeDivRow{
+    padding-top: 5%;
+    justify-content: space-between;
+}

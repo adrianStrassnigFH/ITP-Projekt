@@ -66,6 +66,8 @@ function login(userID){
 function logout(){
     sessionStorage.removeItem("userID");
     console.log("logout");
+    loadPage("homepage")
+    location.reload(); 
 }
 
 function isLoggedIn(){

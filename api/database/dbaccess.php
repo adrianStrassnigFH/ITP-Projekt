@@ -1,7 +1,7 @@
 <?php
-$host = "127.0.0.1";
-$user = "admin";
-$password = "123";
+$host = "localhost";
+$user = "phpmyadmin";
+$password = "2711";
 $database = "Spielewelt";
 
 
