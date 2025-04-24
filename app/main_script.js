@@ -1,13 +1,14 @@
 
 
-// ALL PAGES: "PAGE_KEY": ["PATH_TO_WEBSITE", "PATH_TO_SCRIPT"|null, "TITLE"]
+// ALL PAGES: "PAGE_KEY": ["PATH_TO_WEBSITE", "PATH_TO_SCRIPT"|null, "TITLE"], isModule
 const pages_dictionary = {
-    "homepage": ["homepage/homepage.html","homepage/homepage_script.js","Homepage"],
-    "faq": ["faq/faq.html","faq/faq_script.js","FAQ"],
-    "impressum": ["impressum/impressum.html",null,"Impressum"],
-    "login": ["login/login.html","login/login_script.js","Login"],
-    "register": ["register/register.html","register/register_script.js","Register"],
-    "profile": ["profile/profile.html",null,"Profile"],
+    "homepage": ["homepage/homepage.html","homepage/homepage_script.js","Homepage",false],
+    "faq": ["faq/faq.html","faq/faq_script.js","FAQ",false],
+    "impressum": ["impressum/impressum.html",null,"Impressum",false],
+    "login": ["login/login.html","login/login_script.js","Login",false],
+    "register": ["register/register.html","register/register_script.js","Register",false],
+    "profile": ["profile/profile.html",null,"Profile", false],
+    "game1": ["game_1/index.html", "game_1/src/main.js", "Minesweeper", true],
 }
 
 const observer = new IntersectionObserver(entries => {
@@ -39,6 +40,7 @@ function loadPage(pageKey){
         if(pages_dictionary[pageKey][1] !== undefined && pages_dictionary[pageKey][1] !== null) {
             const script = document.createElement("script");
             script.src = pages_dictionary[pageKey][1];
+            if(pages_dictionary[pageKey][3]) script.type ="module";
             document.body.appendChild(script);
         }
         animation();

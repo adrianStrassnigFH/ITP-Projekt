@@ -17,6 +17,10 @@ body {
     text-shadow: 0 0 5px #ff00ff, 0 0 10px #9900cc;
 }
 
+#field-size{
+    background-color: #9900cc;
+}
+
 #reset-button {
     margin-left: 10px;
     padding: 5px 10px;
@@ -46,6 +50,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-shadow: none !important;
+
 }
 
 .box.initial {
@@ -54,7 +60,7 @@ body {
     cursor: pointer;
 }
 
-.box.bomb-count-1 { color: blue }
+.box.bomb-count-1 { color: blue;}
 .box.bomb-count-2 { color: green }
 .box.bomb-count-3 { color: red }
 .box.bomb-count-4 { color: darkblue }

@@ -1,4 +1,5 @@
 export function renderGameBoard(matrix, callbacks) {
+
     const gameElement = document.getElementById('game');
     gameElement.innerHTML = '';
     gameElement.style.maxWidth = `${50 * matrix[0].length}px`;
