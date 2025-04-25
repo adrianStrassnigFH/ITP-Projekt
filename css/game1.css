@@ -9,6 +9,10 @@ body {
     color: white;
 }
 
+#content{
+    min-height: 100vh;
+}
+
 #title {
     color: violet;
     font-size: 28px;

@@ -53,6 +53,9 @@ async function EditData(){
         if(!response.success){
             alert(response.error);
         }
+        else{
+            alert("Data updated");
+        }
     }catch(error){
         console.error("Login failed: ", error);
     }

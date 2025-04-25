@@ -20,15 +20,11 @@ $sql = "UPDATE User SET FirstName = ?, LastName = ?, Email = ? WHERE UserID =?;"
 $stmt = $db_obj->prepare($sql);
 $stmt->bind_param("ssss",$userFirstName, $userLastName, $userEmail, $userId);
 $stmt->execute();
-$result = $stmt->get_result();
 
-if($result->num_rows == 0){
+if($stmt->affected_rows == 0){
     $response["error"] = "Invalid login credentials";
-    $stmt->close();
-    echo json_encode($response);
-    exit;
 }else{
-    $user = $result->fetch_object();
+
     $response["success"] = true;
 }
 
