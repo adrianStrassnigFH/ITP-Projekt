@@ -21,9 +21,8 @@ async function handleRegister(){
     formData.append("lname", lname);
     formData.append("email", email);
     formData.append("password", password);
-
     try{
-        let response = await fetch("/api/auth/register.php", {
+        let response = await fetch("../api/auth/register.php", {
             method: "POST",
             body: formData,
         })
@@ -36,7 +35,7 @@ async function handleRegister(){
             alert(response.error);
         }
     }catch(error){
-        console.error("Registration failed: ", error);
+        console.error("Login failed: ", error);
     }
 }
 

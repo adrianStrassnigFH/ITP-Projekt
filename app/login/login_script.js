@@ -13,7 +13,7 @@ async function handleLogin(){
     formData.append("password", password);
 
     try{
-        let response = await fetch("/api/auth/login.php", {
+        let response = await fetch("../api/auth/login.php", {
             method: "POST",
             body: formData,
         })

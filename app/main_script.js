@@ -7,7 +7,7 @@ const pages_dictionary = {
     "impressum": ["impressum/impressum.html",null,"Impressum",false],
     "login": ["login/login.html","login/login_script.js","Login",false],
     "register": ["register/register.html","register/register_script.js","Register",false],
-    "profile": ["profile/profile.html",null,"Profile", false],
+    "profile": ["profile/profile.html","profile/profile_script.js","Profile"],
     "game1": ["game_1/index.html", "game_1/src/main.js", "Minesweeper", true],
 }
 
@@ -66,6 +66,8 @@ function login(userID){
 function logout(){
     sessionStorage.removeItem("userID");
     console.log("logout");
+    loadPage("homepage")
+    location.reload(); 
     loadPage("homepage")
     location.reload(); 
 }
