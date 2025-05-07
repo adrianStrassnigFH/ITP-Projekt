@@ -33,6 +33,23 @@ if($result->num_rows == 0){
 }
 
 $stmt->close();
+
+
+// Get scores and game titles
+$sqlScores = "SELECT Game.Title, Scoreboard.Score FROM Scoreboard JOIN Game ON Scoreboard.GameID_FK = Game.GameID WHERE Scoreboard.UserID_FK = ?";
+$stmtScores = $db_obj->prepare($sqlScores);
+$stmtScores->bind_param("s", $userId);
+$stmtScores->execute();
+$resultScores = $stmtScores->get_result();
+
+$response["Scores"] = [];
+while ($row = $resultScores->fetch_assoc()) {
+    $response["Scores"][] = $row;
+}
+
+$stmtScores->close();
+
+
 echo json_encode($response);
 exit;
 

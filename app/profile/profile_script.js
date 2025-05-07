@@ -6,6 +6,7 @@ async function handleProfile(){
     let userEmail;
     let userFirstName;
     let userLastName;
+    let score;
     try{
         let response = await fetch("../api/auth/get_user_data.php", {
             method: "POST",
@@ -16,17 +17,30 @@ async function handleProfile(){
             userEmail = response.Email;
             userFirstName = response.FirstName;
             userLastName = response.LastName;
+            let UserFirstNameInput = document.getElementById("UserFirstName");
+            let UserlastNameInput = document.getElementById("UserLastName");
+            let UserEmailInput = document.getElementById("UserEmail");
+        
+            UserFirstNameInput.value = userFirstName;
+            UserlastNameInput.value = userLastName;
+            UserEmailInput.value = userEmail;
+
+            const scoreContainer = document.getElementById("ScoreContainer");
+            scoreContainer.innerHTML = "";
+
+            if (Array.isArray(response.Scores) && response.Scores.length > 0) {
+                response.Scores.forEach(scoreObj => {
+                    const div = document.createElement("div");
+                    div.textContent = `${scoreObj.Title}: ${scoreObj.Score}`;
+                    scoreContainer.appendChild(div);
+                });
+            } else {
+                scoreContainer.textContent = "No scores found.";
+            }
         }
         else{
             alert(response.error);
         }
-        let UserFirstNameInput = document.getElementById("UserFirstName");
-        let UserlastNameInput = document.getElementById("UserLastName");
-        let UserEmailInput = document.getElementById("UserEmail");
-    
-        UserFirstNameInput.value = userFirstName;
-        UserlastNameInput.value = userLastName;
-        UserEmailInput.value = userEmail;
     }catch(error){
         console.error("Login failed: ", error);
     }
