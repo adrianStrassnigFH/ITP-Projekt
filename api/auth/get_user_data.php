@@ -49,6 +49,26 @@ while ($row = $resultScores->fetch_assoc()) {
 
 $stmtScores->close();
 
+// Fetch favorite game (just the title)
+$sqlFavGame = "SELECT Game.Title 
+               FROM Scoreboard 
+               JOIN Game ON Scoreboard.GameID_FK = Game.GameID 
+               WHERE Scoreboard.UserID_FK = ? 
+               GROUP BY Game.Title 
+               ORDER BY COUNT(*) DESC 
+               LIMIT 1";
+$stmtFav = $db_obj->prepare($sqlFavGame);
+$stmtFav->bind_param("s", $userId);
+$stmtFav->execute();
+$resultFav = $stmtFav->get_result();
+
+if ($fav = $resultFav->fetch_assoc()) {
+    $response["FavoriteGame"] = $fav["Title"];
+} else {
+    $response["FavoriteGame"] = null;
+}
+$stmtFav->close();
+
 
 echo json_encode($response);
 exit;

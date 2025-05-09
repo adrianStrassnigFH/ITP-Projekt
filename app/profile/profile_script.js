@@ -31,12 +31,16 @@ async function handleProfile(){
             if (Array.isArray(response.Scores) && response.Scores.length > 0) {
                 response.Scores.forEach(scoreObj => {
                     const div = document.createElement("div");
+                    div.classList.add("scoreObj");
                     div.textContent = `${scoreObj.Title}: ${scoreObj.Score}`;
                     scoreContainer.appendChild(div);
                 });
+
             } else {
                 scoreContainer.textContent = "No scores found.";
             }
+            const favGameSpan = document.getElementById("FavoriteGameSpan");
+            favGameSpan.textContent = response.FavoriteGame || "None";
         }
         else{
             alert(response.error);
