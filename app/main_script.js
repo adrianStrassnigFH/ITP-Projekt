@@ -37,11 +37,20 @@ function loadPage(pageKey){
     .then(html => {
         document.getElementById("content").innerHTML = html;
 
+        console.log(pages_dictionary[pageKey][1]);
         if(pages_dictionary[pageKey][1] !== undefined && pages_dictionary[pageKey][1] !== null) {
-            const script = document.createElement("script");
-            script.src = pages_dictionary[pageKey][1];
-            if(pages_dictionary[pageKey][3]) script.type ="module";
-            document.body.appendChild(script);
+            if (pages_dictionary[pageKey][3]) {
+                import("./" + pages_dictionary[pageKey][1] + '?v=' + new Date().getTime())
+                    .then(module => {
+                        console.log("Module loaded", module);
+                    })
+                    .catch(err => console.error("Module failed to load", err));
+            } else {
+                const script = document.createElement("script");
+                script.src = pages_dictionary[pageKey][1];
+                script.setAttribute("data-dynamic", "true");
+                document.body.appendChild(script);
+            }
         }
         animation();
     })

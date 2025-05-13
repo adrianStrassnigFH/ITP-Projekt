@@ -121,10 +121,60 @@
     width:50%;
     height:50vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
     background-color: #0b001e;
     box-shadow: 3px 3px 0 #dd00dd;
     border-radius: 10px;
+}
+#leaderboardHeading{
+    padding-top: 0;
+    margin-top: 2vh;
+
+}
+#leaderboardGameDivs{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding-top: 1vh;
+    gap: 1vw;
+}
+.leaderboardGame{
+    height: 100%;
+    width: 15vw !important;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #260050;
+}
+
+.leaderboardGame div{
+    font-size: 0.3em;
+}
+
+.leaderboardGame h2{
+    font-size: 1vw;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+#difficultySelect{
+    background-color: #0b001e;
+    color: white;
+    border: 2px solid #dd00dd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.6vw;
+    font-family: 'Press Start 2P', system-ui;
+    text-shadow: 1px 1px 0 #dd00dd;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 0 #dd00dd;
+    outline: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #leaderboard:hover{
     transform: scale(1.05); /* Slightly enlarges the element */
@@ -333,5 +383,5 @@ input:focus{
     object-fit: cover;     
 }
 .scoreObj{
-    margin: 20px;
+    margin-top: 7px;
 }

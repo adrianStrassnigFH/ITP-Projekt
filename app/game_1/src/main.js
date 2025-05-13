@@ -9,6 +9,7 @@ class Game {
         this.gameOver = false
         this.timer = new Timer('timer')
         this.init()
+        console.log("Game started");
     }
 
     init() {
@@ -105,3 +106,4 @@ class Game {
 }
 
 new Game()
+console.log("script loaded");
