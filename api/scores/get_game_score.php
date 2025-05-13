@@ -7,7 +7,7 @@ $response = [];
 $gameID = $_POST["gameID"];
 $difficultyID = $_POST["difficultyID"];
 
-$sqlScores = "SELECT User.FirstName, Scoreboard.Score FROM Scoreboard JOIN User ON Scoreboard.UserID_FK = User.UserID WHERE Scoreboard.GameID_FK = ? AND Scoreboard.DifficultyID_FK = ?";
+$sqlScores = "SELECT User.FirstName, Scoreboard.Score FROM Scoreboard JOIN User ON Scoreboard.UserID_FK = User.UserID WHERE Scoreboard.GameID_FK = ? AND Scoreboard.DifficultyID_FK = ? ORDER BY Scoreboard.Score DESC";
 $stmtScores = $db_obj->prepare($sqlScores);
 $stmtScores->bind_param("ii",$gameID, $difficultyID );
 $stmtScores->execute();

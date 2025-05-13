@@ -47,8 +47,7 @@ async function updateScoreboard(difficultyID){
 
 }
 
-let difficultySelect = document.getElementById("difficultySelect");
-difficultySelect.addEventListener("change", (event) => {
+document.getElementById("difficultySelect").addEventListener("change", (event) => {
     updateScoreboard(difficultySelect.value);
 })
 

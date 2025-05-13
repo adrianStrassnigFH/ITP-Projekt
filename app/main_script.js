@@ -82,7 +82,7 @@ function logout(){
 }
 
 function isLoggedIn(){
-    return sessionStorage.getItem("userID") !== null;
+    return sessionStorage.getItem("userID");
 }
 
 function updateNavbar(){
@@ -107,6 +107,24 @@ function updateNavbar(){
     logoutLinkLi.appendChild(logoutLink);
     navBar.appendChild(logoutLinkLi);
 }
+
+function uploadScore(userID, gameID, difficultyID, score){
+    console.log(difficultyID)
+    let formData = new FormData();
+    formData.append("userID",userID);
+    formData.append("gameID",gameID);
+    formData.append("difficultyID",difficultyID);
+    formData.append("score", score);
+    fetch("../../api/scores/upload_game_score.php", {
+        method: "POST",
+        body: formData,
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+}
+
 
 loadPage("homepage");
 updateNavbar();

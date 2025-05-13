@@ -26,6 +26,21 @@ class Game {
         this.logic.initMatrix()
         this.gameOver = false
         this.timer.reset()
+        switch(size){
+            case 8:
+                this.difficulty = 0;
+                break;
+            case 12:
+                this.difficulty = 1;
+                break;
+            case 16:
+                this.difficulty = 2;
+                break;
+            default:
+                this.difficulty = null;
+                break;
+        }
+
         renderGameBoard(this.logic.matrix, {
             onCellClick: (x, y) => this.handleClick(x, y),
             onRightClick: (x, y) => this.handleRightClick(x, y)
@@ -61,7 +76,12 @@ class Game {
         if (this.checkWin()) {
             this.timer.stop()
             const seconds = Math.floor((Date.now() - this.timer.startTime) / 1000)
-            setTimeout(() => alert(`Gewonnen in ${seconds}s`), 0)
+            let score = seconds > 0 ? 500/seconds : 500;
+            setTimeout(() => alert(`Score: ${score}`), 0)
+            const userID = isLoggedIn();
+            if(userID){
+                uploadScore(userID,1,this.difficulty,score);
+            }
             this.gameOver = true
         }
     }
@@ -106,4 +126,3 @@ class Game {
 }
 
 new Game()
-console.log("script loaded");
