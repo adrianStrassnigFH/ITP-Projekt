@@ -16,13 +16,19 @@ if(!$userId ){
     exit;
 }
 
+if(isEmailTaken($userEmail, $db_obj)){
+    $response["error"] = "Email is already taken.";
+    echo json_encode($response);
+    exit;
+}
+
 $sql = "UPDATE User SET FirstName = ?, LastName = ?, Email = ? WHERE UserID =?;";
 $stmt = $db_obj->prepare($sql);
 $stmt->bind_param("ssss",$userFirstName, $userLastName, $userEmail, $userId);
 $stmt->execute();
 
 if($stmt->affected_rows == 0){
-    $response["error"] = "Invalid login credentials";
+    $response["error"] = "Nothing was updated";
 }else{
 
     $response["success"] = true;
