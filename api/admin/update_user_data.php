@@ -9,6 +9,7 @@ $userId = $_POST["userID"];
 $userFirstName = $_POST["FirstName"];
 $userLastName = $_POST["LastName"];
 $userEmail = $_POST["Email"];
+$userPassword = password_hash($_POST["Password"], PASSWORD_DEFAULT) ;
 
 if(!$userId ){
     $response["error"] = "UserID is null.";
@@ -22,15 +23,14 @@ if($userEmail !== getEmailByUserId($userId, $db_obj) && isEmailTaken($userEmail,
     exit;
 }
 
-$sql = "UPDATE User SET FirstName = ?, LastName = ?, Email = ? WHERE UserID =?;";
+$sql = "UPDATE User SET FirstName = ?, LastName = ?, Email = ?, Password = ? WHERE UserID =?;";
 $stmt = $db_obj->prepare($sql);
-$stmt->bind_param("ssss",$userFirstName, $userLastName, $userEmail, $userId);
+$stmt->bind_param("sssss",$userFirstName, $userLastName, $userEmail, $userPassword,$userId);
 $stmt->execute();
 
 if($stmt->affected_rows == 0){
     $response["error"] = "Nothing was updated";
 }else{
-
     $response["success"] = true;
 }
 
@@ -38,4 +38,3 @@ $stmt->close();
 echo json_encode($response);
 exit;
 
-?>

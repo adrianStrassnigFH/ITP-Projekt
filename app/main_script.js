@@ -9,6 +9,7 @@ const pages_dictionary = {
     "register": ["register/register.html","register/register_script.js","Register",false],
     "profile": ["profile/profile.html","profile/profile_script.js","Profile"],
     "game1": ["game_1/index.html", "game_1/src/main.js", "Minesweeper", true],
+    "manageUsers":["users/users.html","users/users_script.js","Manage Users",false]
 }
 
 const observer = new IntersectionObserver(entries => {
@@ -66,14 +67,16 @@ function animation(){
 
 }
 
-function login(userID){
+function login(userID, isAdmin){
     sessionStorage.setItem("userID",userID);
+    sessionStorage.setItem("isAdmin",isAdmin);
     updateNavbar();
     loadPage("homepage")
 }
 
 function logout(){
     sessionStorage.removeItem("userID");
+    sessionStorage.removeItem("isAdmin");
     console.log("logout");
     loadPage("homepage")
     location.reload(); 
@@ -85,6 +88,10 @@ function isLoggedIn(){
     return sessionStorage.getItem("userID");
 }
 
+function isAdmin(){
+    return sessionStorage.getItem("isAdmin");
+}
+
 function updateNavbar(){
     if(!isLoggedIn()) return;
 
@@ -93,9 +100,9 @@ function updateNavbar(){
     loginLink.onclick = () => {loadPage("profile")}
 
     let navBar = document.getElementById("navbar-links");
+
     let logoutLinkLi = document.createElement("li");
     logoutLinkLi.classList.add("nav-item");
-
     let logoutLink = document.createElement("a");
     logoutLink.classList.add("nav-link");
     logoutLink.innerText = "Logout";
@@ -105,6 +112,23 @@ function updateNavbar(){
     }
 
     logoutLinkLi.appendChild(logoutLink);
+
+    if(isAdmin() === "1"){
+        console.log("admin");
+        let manageUsersLi = document.createElement("li");
+        manageUsersLi.classList.add("nav-item");
+        let manageUsersLink = document.createElement("a");
+        manageUsersLink.classList.add("nav-link");
+        manageUsersLink.innerText = "Users";
+        manageUsersLink.href = "#";
+        manageUsersLink.onclick = () => {
+            loadPage("manageUsers");
+        }
+
+        manageUsersLi.appendChild(manageUsersLink);
+        navBar.appendChild(manageUsersLi);
+    }
+
     navBar.appendChild(logoutLinkLi);
 }
 

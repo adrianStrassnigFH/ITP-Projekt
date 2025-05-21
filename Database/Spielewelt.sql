@@ -205,7 +205,7 @@ ALTER TABLE `GameDifficulty`
 ALTER TABLE `Scoreboard`
   ADD CONSTRAINT `Difficulty_ID_FK_Relation` FOREIGN KEY (`DifficultyID_FK`) REFERENCES `Difficulty` (`DifficultyID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `Game_ID_FK_Relation` FOREIGN KEY (`GameID_FK`) REFERENCES `Game` (`GameID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `User_ID_FK_Relation` FOREIGN KEY (`UserID_FK`) REFERENCES `User` (`UserID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `User_ID_FK_Relation` FOREIGN KEY (`UserID_FK`) REFERENCES `User` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `User`

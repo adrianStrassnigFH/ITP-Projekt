@@ -16,7 +16,7 @@ if(!$email || !$password){
     exit;
 }
 
-$sql = "SELECT UserID,Email,Password FROM User where Email=?";
+$sql = "SELECT UserID,Email,Password,isAdmin FROM User where Email=?";
 $stmt = $db_obj->prepare($sql);
 $stmt->bind_param("s",$email);
 $stmt->execute();
@@ -34,6 +34,7 @@ $user = $result->fetch_object();
 if(password_verify($password,$user->Password)){
     $response["success"] = true;
     $response["userID"] = $user->UserID;
+    $response["isAdmin"] = $user->isAdmin;
 }else{
     $response["error"] = "Invalid login credentials";
 }
