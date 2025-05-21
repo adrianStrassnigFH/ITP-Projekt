@@ -21,6 +21,7 @@ async function handleRegister(){
     formData.append("lname", lname);
     formData.append("email", email);
     formData.append("password", password);
+    formData.append("isAdmin", "0")
     try{
         let response = await fetch("../api/auth/register.php", {
             method: "POST",

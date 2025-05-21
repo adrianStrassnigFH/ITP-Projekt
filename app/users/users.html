@@ -7,11 +7,25 @@
             </div>
         </div>
 
-        <div class="row" id="userTable">
+        <div class="row">
+            <h3>Create User</h3>
+            <div class="col-12">
+                <input type="text" placeholder="First Name" id="fname" class="userInput small" required>
+                <input type="text" placeholder="Last Name" id="lname" class="userInput small" required>
+                <input type="email" placeholder="Email" id="email" class="userInput big" required>
+                <input type="password" placeholder="Password" id="password" class="userInput big" required>
+                <select id="role" class="roleSelect">
+                    <option value="0">User</option>
+                    <option value="1">Admin</option>
+                </select>
+                <button type="submit" class="userButton" id="registerSubmit" onclick="addUser()">Create User</button>
+            </div>
         </div>
         <br>
         <br>
-        <br>
+        <div class="row" id="userTable">
+        </div>
+
 
     </div>
 </div>

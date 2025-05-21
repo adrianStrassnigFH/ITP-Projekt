@@ -4,6 +4,7 @@ async function editUserData(userID){
     let UserlastNameInput = document.getElementById("lastName"+userID);
     let UserEmailInput = document.getElementById("email"+userID);
     let UserPasswordInput = document.getElementById("password"+userID);
+    let UserRoleInput = document.getElementById("role"+userID);
 
     const formData = new FormData();
     formData.append("userID", userID);
@@ -11,6 +12,7 @@ async function editUserData(userID){
     formData.append("LastName", UserlastNameInput.value);
     formData.append("Email", UserEmailInput.value);
     formData.append("Password", UserPasswordInput.value)
+    formData.append("isAdmin", UserRoleInput? UserRoleInput.value: 1);
     try{
         let response = await fetch("../api/admin/update_user_data.php", {
             method: "POST",
@@ -56,6 +58,45 @@ async function deleteUser(userID){
         console.error("Update failed: ", error);
     }
 }
+
+async function addUser(){
+    const formData = new FormData();
+    const fname = document.getElementById("fname").value.trim();
+    const lname = document.getElementById("lname").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const isAdmin = document.getElementById("role").value;
+
+    if(fname === '' || lname === '' || email === '' || password === ''){
+        alert("Please enter valid data");
+        return;
+    }
+
+    formData.append("fname", fname);
+    formData.append("lname", lname);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("isAdmin", isAdmin);
+    try{
+        let response = await fetch("../api/auth/register.php", {
+            method: "POST",
+            body: formData,
+        })
+
+        response = await response.json();
+        if(response.success){
+            alert("User created");
+            loadPage("manageUsers");
+        }
+        else{
+            alert(response.error);
+
+        }
+    }catch(error){
+        console.error("User creation failed: ", error);
+    }
+
+}
 async function buildUserTable(){
     try{
         let response = await fetch("../api/admin/get_all_user_data.php", {
@@ -82,7 +123,12 @@ async function buildUserTable(){
                 <input value="${user.LastName}" class="userInput small" id="lastName${user.UserID}">
                 <input value="${user.Email}" class="userInput big" id="email${user.UserID}">
                 <input placeholder="new password" class="userInput" type="password" id="password${user.UserID}">
-                ${user.isAdmin?"Admin":"User"}
+                
+                ${user.UserID == isLoggedIn()?"Admin":"" +
+                '<select id="role'+user.UserID+ '" class="roleSelect">' +
+                '<option value="0">User</option>' +
+                '<option value="1"' + (user.isAdmin?"selected":"")+ '>Admin</option>' +
+                '</select>'}
                 
                 
                 <button class="userButton" style="margin-left: auto" onclick="editUserData(${user.UserID})">Apply</button>

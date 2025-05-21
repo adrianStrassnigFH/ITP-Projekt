@@ -10,6 +10,7 @@ $fname = test_input($_POST["fname"]);
 $lname = test_input($_POST["lname"]);
 $email = test_input($_POST["email"]);
 $password = test_input($_POST["password"]);
+$isAdmin = test_input($_POST["isAdmin"]);
 
 // Check if all filter have been passed
 if(!$fname || !$lname || !$email || !$password){
@@ -27,8 +28,7 @@ if(isEmailTaken($email, $db_obj)){
 
 $stmt = $db_obj->prepare("INSERT INTO User (isAdmin, Email, Password, FirstName, LastName) VALUES (?, ?, ?, ?, ?)");
 $dbPassword = password_hash($password,PASSWORD_DEFAULT);
-$dbIsAdmin = 0;
-$stmt->bind_param("issss", $dbIsAdmin, $email,$dbPassword,$fname, $lname);
+$stmt->bind_param("issss", $isAdmin, $email,$dbPassword,$fname, $lname);
 if ($stmt->execute()) {
     $response["success"] = true;
     $response["userID"] = $db_obj->insert_id;

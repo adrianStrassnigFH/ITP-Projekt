@@ -9,7 +9,8 @@ $userId = $_POST["userID"];
 $userFirstName = $_POST["FirstName"];
 $userLastName = $_POST["LastName"];
 $userEmail = $_POST["Email"];
-$userPassword = password_hash($_POST["Password"], PASSWORD_DEFAULT) ;
+$userPassword = $_POST["Password"];
+$userIsAdmin = $_POST["isAdmin"];
 
 if(!$userId ){
     $response["error"] = "UserID is null.";
@@ -23,10 +24,20 @@ if($userEmail !== getEmailByUserId($userId, $db_obj) && isEmailTaken($userEmail,
     exit;
 }
 
-$sql = "UPDATE User SET FirstName = ?, LastName = ?, Email = ?, Password = ? WHERE UserID =?;";
-$stmt = $db_obj->prepare($sql);
-$stmt->bind_param("sssss",$userFirstName, $userLastName, $userEmail, $userPassword,$userId);
-$stmt->execute();
+if($userPassword){
+    $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+    $sql = "UPDATE User SET FirstName = ?, LastName = ?, Email = ?, Password = ?, isAdmin = ? WHERE UserID =?;";
+    $stmt = $db_obj->prepare($sql);
+    $stmt->bind_param("ssssis",$userFirstName, $userLastName, $userEmail, $userPassword,$userIsAdmin,$userId);
+    $stmt->execute();
+}else{
+    $sql = "UPDATE User SET FirstName = ?, LastName = ?, Email = ?, isAdmin = ? WHERE UserID =?;";
+    $stmt = $db_obj->prepare($sql);
+    $stmt->bind_param("sssis",$userFirstName, $userLastName, $userEmail,$userIsAdmin,$userId);
+    $stmt->execute();
+}
+
+
 
 if($stmt->affected_rows == 0){
     $response["error"] = "Nothing was updated";

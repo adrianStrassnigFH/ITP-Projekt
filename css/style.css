@@ -426,7 +426,22 @@ input:focus{
 
 .userButton{
     padding-inline: 2%;
+    padding-block: 10px;
     border-radius: 5px;
     border: 1px solid #dd00dd;
     background-color: #0b001e;
+}
+
+.roleSelect{
+    background-color: #0b001e;
+    color: white;
+    border: 2px solid #dd00dd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.6vw;
+    font-family: 'Press Start 2P', system-ui;
+    text-shadow: 1px 1px 0 #dd00dd;
+    box-shadow: 2px 2px 0 #dd00dd;
+    outline: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
