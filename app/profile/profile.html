@@ -13,19 +13,25 @@
     <p>Favourite Game: <span id="FavoriteGameSpan">Loading...</span></p>
 
     <div class="row">
-      <div class = "col">
+      <div class = "col" id = "DataDiv">
         <input id="UserFirstName"></input>
         <input id="UserLastName"></input>
         <input id="UserEmail"></input>
+        <button onclick="CreateChangePsswdField()" id="UserPasswordBtn">change password</button>
       </div>
       <div class="col">
           <p>Your Scores</p>
           <div class="overflow-auto" id="ScoreContainer"></div>
       </div>
     </div>
+
+    <div id = "ChangePsswdDiv" class="centered-container" >
+      <input id = "UserOldPsswd" placeholder="enter old password"></input>
+      <input id = "UserNewPsswd" placeholder="enter new password"></input>
+      <button onclick="CheckUserPasswd()" id = "UserChangePasswordBtn">change</button>
+    </div>
     <br>
-    <br>
-    <br>
+
 
     <div class="container">
       <div class="row justify-content-center gap-3">
