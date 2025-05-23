@@ -329,21 +329,18 @@ input:focus{
 }
 #InnerContainer{
     margin: 10vh ;
-    padding: 100px;
-    border: 1px solid white;
-    border-radius: 15px;
-    box-shadow: 3px 3px 0 #dd00dd;
+    border-left: 1px solid #dd00dd;
 }
 
 .games{
     background-color: #0b001e;
-    border: 1px solid white;
-    border-radius: 15px;
-    box-shadow: 3px 3px 0 #dd00dd;
+    border: none;
+    border: 1px solid #dd00dd;
+    border-radius: 5px;
 }
 
 #ScoreContainer{
-    border: 1px solid white;
+    border: 1px solid #dd00dd;
     border-radius: 5px;
     min-height: 20vh;
 }
@@ -359,11 +356,27 @@ input:focus{
     border: 1px solid #dd00dd;
     background-color: #0b001e;
 }
-
-#UserFirstName, #UserLastName, #UserEmail{
+#UserPasswordBtn{
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 4%;
+    border-radius: 5px;
+    border: 1px solid #dd00dd;
+    background-color: #0b001e;
+}
+#UserChangePasswordBtn{
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 5px;
+    border: 1px solid #dd00dd;
+    background-color: #0b001e;
+}
+#UserFirstName, #UserLastName, #UserEmail, #UserOldPsswd, #UserNewPsswd{
     padding-left: 3%;
     font-size: small;
-
+    margin: 1%;
 }
 
 #LogoImg{
@@ -376,7 +389,7 @@ input:focus{
     gap: 10px;
 }
 #WelcomeDivRow{
-    padding-top: 5%;
+    padding-top: 1%;
     justify-content: space-between;
 }
 .card-img-top {
@@ -387,7 +400,30 @@ input:focus{
 .scoreObj{
     margin-top: 7px;
 }
+.centered-container{
+    display: flex;
+    flex-direction: column;     /* Stack items vertically */
+    align-items: center;        /* Center horizontally */
+    justify-content: center;    /* Center vertically (if you want full centering) */
+}
+#ChangePsswdDiv {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 1.0s ease, opacity 0.5s ease;
+}
 
+/* When showing */
+#ChangePsswdDiv.show {
+  max-height: 500px; /* large enough to fit content */
+  opacity: 1;
+}
+
+/* When hiding */
+#ChangePsswdDiv.hidden {
+  max-height: 0;
+  opacity: 0;
+}
 /*------------------------------------------------------------------*/
 /*-------------------------------User Management-----------------------------------*/
 

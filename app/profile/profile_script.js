@@ -79,3 +79,66 @@ async function EditData(){
     }
 
 }
+function CreateChangePsswdField() {
+  const editPsswdDiv = document.getElementById("ChangePsswdDiv");
+
+  if (editPsswdDiv.classList.contains("show")) {
+    editPsswdDiv.classList.remove("show");
+    editPsswdDiv.classList.add("hidden");
+  } else {
+    editPsswdDiv.classList.remove("hidden");
+    editPsswdDiv.classList.add("show");
+  }
+}
+
+async function CheckUserPasswd(){
+    const oldUserPsswd = document.getElementById("UserOldPsswd");
+    const userID = sessionStorage.getItem("userID");
+    const newUserPsswd = document.getElementById("UserNewPsswd");
+    if(oldUserPsswd.value.trim() !== "" && newUserPsswd.value.trim() !== ""){
+
+        const formData = new FormData();
+        formData.append("userID", userID);
+        formData.append("password", oldUserPsswd.value);
+
+            let response = await fetch("../api/auth/check_user_passwd.php", {
+                method: "POST",
+                body: formData,
+            })
+            response = await response.json();
+            if(!response.success){
+                alert(response.error);
+            }
+            else{
+                console.log("Password is correct");
+               await UpdatePassword();
+            }
+    }else{
+        alert("old- or new password is empty");
+    }
+}
+
+async function UpdatePassword(){
+    const newUserPsswd = document.getElementById("UserNewPsswd");
+    const userID = sessionStorage.getItem("userID");
+
+        const formData = new FormData();
+        formData.append("userID", userID);
+        formData.append("password", newUserPsswd.value);
+
+        try{
+            let response = await fetch("../api/auth/update_user_passwd.php", {
+                method: "POST",
+                body: formData,
+            })
+            response = await response.json();
+            if(!response.success){
+                alert(response.error);
+            }
+            else{
+                console.log("Password is correct");
+            }
+        }catch(error){
+            console.error("Login failed: ", error);
+        }
+}
