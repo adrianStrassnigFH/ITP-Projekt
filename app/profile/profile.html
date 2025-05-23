@@ -26,8 +26,8 @@
     </div>
 
     <div id = "ChangePsswdDiv" class="centered-container" >
-      <input id = "UserOldPsswd" placeholder="enter old password"></input>
-      <input id = "UserNewPsswd" placeholder="enter new password"></input>
+      <input id = "UserOldPsswd" type="password" placeholder="enter old password"></input>
+      <input id = "UserNewPsswd" type="password" placeholder="enter new password"></input>
       <button onclick="CheckUserPasswd()" id = "UserChangePasswordBtn">change</button>
     </div>
     <br>
@@ -53,7 +53,7 @@
             <div class="card-body">
               <h5 class="card-title">Flappy Bird</h5>
               <p class="card-text">Noch eine kurze Beschreibung.</p>
-              <a href="#" class="btn btn-primary">Play game</a>
+              <a onclick="loadPage('game2')"  href="#" class="btn btn-primary">Play game</a>
             </div>
           </div>
         </div>

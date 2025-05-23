@@ -112,6 +112,7 @@ async function CheckUserPasswd(){
             else{
                 console.log("Password is correct");
                await UpdatePassword();
+               alert("Password updated");
             }
     }else{
         alert("old- or new password is empty");

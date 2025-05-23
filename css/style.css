@@ -1,6 +1,6 @@
 /*homepage.html css elements*/
 *{
-    font-family: 'Press Start 2P', system-ui;
+    font-family: 'Press Start 2P', system-ui !important;
     text-shadow: 3px 3px 0 #dd00dd;
     letter-spacing: 1px;
     color: white;
