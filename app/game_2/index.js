@@ -14,7 +14,41 @@ class GameManager {
         });
         this.startButton.addEventListener("click", (event) => {this.startGame()})
         this.startButton.classList.add("show");
+        this.#initializeScoreDisplay();
     }
+    #initializeScoreDisplay(){
+        let scoreDisplay = document.getElementById("score-display");
+        if(!scoreDisplay){
+            scoreDisplay = document.createElement("div");
+            scoreDisplay.id = "score-display";
+            scoreDisplay.style.position = "absolute";
+            scoreDisplay.style.top = "20px";
+            scoreDisplay.style.left = "50%";
+            scoreDisplay.style.transform = "translateX(-50%)";
+            scoreDisplay.style.fontSize = "24px";
+            scoreDisplay.style.fontWeight = "bold";
+            scoreDisplay.style.color = "white";
+            scoreDisplay.style.textShadow = "2px 2px 4px rgba(0,0,0,0.8)";
+            scoreDisplay.style.zIndex = "1000";
+            this.#gameWindow.appendChild(scoreDisplay);
+
+        }
+        this.scoreDisplay = scoreDisplay;
+        this.updateScoreDisplay();
+    }
+    updateScoreDisplay(){
+        this.scoreDisplay.textContet = `Score : ${this.#score}`;
+    }
+    addPoint(){
+        this.#score++;
+        this.updateScoreDisplay();
+        console.log(`Points scored!`);
+    }
+    resetScore(){
+        this.#score = 0;
+        this.updateScoreDisplay();
+    }
+
     startGame(){
         this.Map.stopObstacles();
         this.Bird.resetBird();
@@ -28,6 +62,10 @@ class GameManager {
             this.#gameGoing = false;
             this.startButton.classList.add("show");
         });
+
+        this.Map.startPointDetection(this.Bird.birdLogo, () =>{
+            this.addPoint();
+        })
 
         this.#gameGoing = true;
         this.startButton.classList.remove("show");
@@ -48,6 +86,8 @@ class GameManager {
     Map;
     #gameGoing = false;
     #gameWindow;
+    scoreDisplay
+    #score = 0
 
 }
 class Bird{
@@ -140,7 +180,12 @@ class Map{
             this.#obstacle5,
             this.#obstacle6,
         ]
-
+        this.#obstaclePairs = [
+            this.#pair1,
+            this.#pair2,
+            this.#pair3
+        ];
+        this.#passedPairs = new Set();
     }
     #gameInterval;
 
@@ -153,6 +198,8 @@ class Map{
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     initializeMap(){
+        this.#passedPairs.clear();
+
         for(let i = 0; i < this.#allObstacles.length; i++){
             if(i % 2 === 0){
                 this.#allObstacles[i].style.transform = "rotate(180deg)";
@@ -207,18 +254,23 @@ class Map{
             this.#pair1.style.top = this.getRandomNumber(0,30) + "%"
             this.#pair1.style.left = 100 + "%";
             pair1leftValue = 100;
+            this.#passedPairs.delete(this.#pair1)
         }
         if(pair2leftValue <= -10){
 
             this.#pair2.style.top = this.getRandomNumber(0,30) + "%"
             this.#pair2.style.left = 100 + "%";
             pair2leftValue = 100;
+            this.#passedPairs.delete(this.#pair2)
+
         }
         if(pair3leftValue <= -10){
 
             this.#pair3.style.top = this.getRandomNumber(0,30) + "%"
             this.#pair3.style.left = 100 + "%";
             pair3leftValue = 100;
+            this.#passedPairs.delete(this.#pair3)
+
         }
         return [pair1leftValue, pair2leftValue, pair3leftValue]
     }
@@ -252,6 +304,23 @@ class Map{
             }
         }, 10);
     }
+    startPointDetection(birdLogo, onPoint){
+        this.#pointInterval = setInterval(() =>{
+            const birdRect = birdLogo.getBoundingClientRect();
+            const birdMiddle = birdRect.left + birdRect.width/2;
+            for(const pair of this.#obstaclePairs){
+                if(this.#passedPairs.has(pair)){
+                    continue;
+                }
+                const pairRect = pair.getBoundingClientRect();
+                const pairMiddle = pairRect.left +pairRect.width/2;
+                if(birdMiddle > pairMiddle){
+                    this.#passedPairs.add(pair);
+                    if(onPoint) onPoint();
+                }
+            }
+        }, 10)
+    }
     #pair1;
     #pair2;
     #pair3;
@@ -262,7 +331,10 @@ class Map{
     #obstacle5;
     #obstacle6;
     #allObstacles;
+    #obstaclePairs;
     #collisionInterval;
+    #pointInterval;
+    #passedPairs;
 }
 const game = new GameManager();
 

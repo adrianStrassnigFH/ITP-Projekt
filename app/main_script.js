@@ -9,6 +9,7 @@ const pages_dictionary = {
     "register": ["register/register.html","register/register_script.js","Register",false],
     "profile": ["profile/profile.html","profile/profile_script.js","Profile"],
     "game1": ["game_1/index.html", "game_1/src/main.js", "Minesweeper", true],
+    "game2": ["game_2/index.html", "game_2/index.js", "FlappyBird", true],
     "manageUsers":["users/users.html","users/users_script.js","Manage Users",false]
 }
 

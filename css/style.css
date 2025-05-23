@@ -329,19 +329,21 @@ input:focus{
 }
 #InnerContainer{
     margin: 10vh ;
-    padding-top: 100px;
-    border-left: 1px solid #dd00dd;
+    padding: 100px;
+    border: 1px solid white;
+    border-radius: 15px;
+    box-shadow: 3px 3px 0 #dd00dd;
 }
 
 .games{
     background-color: #0b001e;
-    border: none;
-    border: 1px solid #dd00dd;
-    border-radius: 5px;
+    border: 1px solid white;
+    border-radius: 15px;
+    box-shadow: 3px 3px 0 #dd00dd;
 }
 
 #ScoreContainer{
-    border: 1px solid #dd00dd;
+    border: 1px solid white;
     border-radius: 5px;
     min-height: 20vh;
 }
