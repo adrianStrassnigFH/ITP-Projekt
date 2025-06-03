@@ -144,7 +144,7 @@
 }
 .leaderboardGame{
     height: 100%;
-    width: 15vw !important;
+    width: 15vw ;
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -154,11 +154,11 @@
 }
 
 .leaderboardGame div{
-    font-size: 0.3em;
+    font-size: 1.4vh;
 }
 
 .leaderboardGame h2{
-    font-size: 1vw;
+    font-size: 2vh;
     margin-bottom: 0;
     padding-bottom: 20px;
 }
@@ -168,7 +168,7 @@
     border: 2px solid #dd00dd;
     border-radius: 8px;
     padding: 10px;
-    font-size: 0.6vw;
+    font-size: 1.4vh;
     font-family: 'Press Start 2P', system-ui;
     text-shadow: 1px 1px 0 #dd00dd;
     margin-bottom: 10px;
@@ -180,6 +180,27 @@
     transform: scale(1.05); /* Slightly enlarges the element */
     z-index: 1; /* Brings it above neighboring elements */
     transition:0.5s all ease;
+}
+@media (max-width: 768px) {
+    #leaderboard{
+
+        width: 90%;
+    }
+    #leaderboardGameDivs{
+        width: 100%;
+    }
+    .leaderboardGame{
+        width: 90%;
+
+    }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+    #leaderboard{
+
+        width: 70%;
+
+    }
+
 }
 /*------------------------------------------------------------------*/
 /*-------------------------------FAQ--------------------------------*/
@@ -329,18 +350,21 @@ input:focus{
 }
 #InnerContainer{
     margin: 10vh ;
-    border-left: 1px solid #dd00dd;
+    padding: 100px;
+    border:none;
+    border-radius: 15px;
+    box-shadow:none;
 }
 
 .games{
     background-color: #0b001e;
-    border: none;
-    border: 1px solid #dd00dd;
-    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow:3px 3px 0 #dd00dd ;
+    border-radius: 15px;
 }
 
 #ScoreContainer{
-    border: 1px solid #dd00dd;
+    border: 1px solid white;
     border-radius: 5px;
     min-height: 20vh;
 }
@@ -353,7 +377,7 @@ input:focus{
     padding-left: 3%;
     padding-right: 3%;
     border-radius: 5px;
-    border: 1px solid #dd00dd;
+    border: 1px solid white;
     background-color: #0b001e;
 }
 #UserPasswordBtn{
@@ -361,17 +385,36 @@ input:focus{
     padding-left: 5%;
     padding-right: 5%;
     margin: 4%;
+    box-shadow:3px 3px 0 #dd00dd ;
     border-radius: 5px;
-    border: 1px solid #dd00dd;
+    border: 1px solid white;
+
     background-color: #0b001e;
+}
+#UserPasswordBtn:hover{
+    color: #dd00dd;
+    text-shadow: none;
+    border: 2px solid #dd00dd;
+    transition:0.5s all ease;
+    cursor: pointer;
+
 }
 #UserChangePasswordBtn{
     padding: 1%;
     padding-left: 5%;
     padding-right: 5%;
+    box-shadow:3px 3px 0 #dd00dd ;
     border-radius: 5px;
-    border: 1px solid #dd00dd;
+    border: 1px solid white;
     background-color: #0b001e;
+}
+#UserChangePasswordBtn:hover{
+    color: #dd00dd;
+    text-shadow: none;
+    border: 2px solid #dd00dd;
+    transition:0.5s all ease;
+    cursor: pointer;
+
 }
 #UserFirstName, #UserLastName, #UserEmail, #UserOldPsswd, #UserNewPsswd{
     padding-left: 3%;

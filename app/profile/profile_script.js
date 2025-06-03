@@ -37,6 +37,7 @@ async function handleProfile(){
                 });
 
             } else {
+
                 scoreContainer.textContent = "No scores found.";
             }
             const favGameSpan = document.getElementById("FavoriteGameSpan");
