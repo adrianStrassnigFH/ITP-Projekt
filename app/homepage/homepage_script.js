@@ -1,12 +1,22 @@
-function initparallax(){
+function initparallax() {
     let parallax = document.getElementById("welcome-section");
-    if(!parallax) return;
-    window.addEventListener("scroll", function(){
+    if (!parallax) return;
+
+    // Set initial background properties
+    parallax.style.backgroundSize = '100%';
+    const initialSize = 100; // Starting at 100% of container
+
+    window.addEventListener("scroll", function() {
         let offset = window.scrollY;
-        parallax.style.backgroundPositionY = `${offset * 0.8}px`
 
-    })
+        // Parallax effect (background moves slower than scrolling)
+        parallax.style.backgroundPositionY = `${offset * 0.8}px`;
 
+        // Scale effect (background grows as you scroll)
+        const scaleAmount = Math.min(offset * 0.01, 50); // Limit to 50% increase
+        const newSize = initialSize + scaleAmount;
+        parallax.style.backgroundSize = `${newSize}%`;
+    });
 }
 
 async function updateScoreboard(difficultyID){

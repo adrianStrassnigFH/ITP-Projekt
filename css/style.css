@@ -96,11 +96,26 @@
     box-shadow: 3px 3px 0 #dd00dd;
     border-radius: 10px;
 }
-.game:hover {
+#game1:hover {
     transform: scale(1.05); /* Slightly enlarges the element */
     z-index: 1; /* Brings it above neighboring elements */
     transition:0.5s all ease;
-    opacity: .9;
+    background-image: url("../app/homepage/img/mindesweeper.jpg");
+    opacity: .7;
+}
+#game2:hover {
+    transform: scale(1.05); /* Slightly enlarges the element */
+    z-index: 1; /* Brings it above neighboring elements */
+    transition:0.5s all ease;
+    background-image: url("../app/homepage/img/flappy_bird_logo.png");
+    opacity: .7;
+}
+#game3:hover {
+    transform: scale(1.05); /* Slightly enlarges the element */
+    z-index: 1; /* Brings it above neighboring elements */
+    transition:0.5s all ease;
+    background-image: url("../app/homepage/img/flappy_bird_logo.png");
+    opacity: .7;
 }
 /*------------------------------------------------------------------*/
 /*-------------------------------LEADERBOARD------------------------*/
@@ -215,7 +230,7 @@
     margin-top: -6vh;
 }
 h1{
-    padding-top: 10vh;
+    margin-top: 10%;
 }
 .faq-item{
     width:50%;
@@ -312,6 +327,7 @@ input:focus{
 }
 .impressum{
     width:40%;
+    overflow: visible;
 }
 .impressum-element{
     min-width:fit-content;
@@ -329,6 +345,7 @@ input:focus{
 }
 .impressum h1{
     display: flex;
+    margin:10%;
     justify-content: center;
 
 }
@@ -355,16 +372,18 @@ input:focus{
     border-radius: 15px;
     box-shadow:none;
     overflow: visible;
+
 }
 #InnerContainer input{
 
         background-color: #0b001e;
         text-shadow:none;
         border-radius: 5px;
-        margin: 2vh ;
+        /*margin: 2vh ;*/
         padding: 20px;
         min-width:fit-content;
         box-shadow: 2px 2px 2px #dd00dd;
+
 
 }
 
@@ -376,9 +395,13 @@ input:focus{
 }
 
 #ScoreContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid white;
     border-radius: 5px;
     min-height: 20vh;
+    box-shadow:3px 3px 0 #dd00dd ;
 }
 
 #EditDiv{
@@ -445,6 +468,7 @@ input:focus{
     display: flex; 
     align-items: center; 
     gap: 10px;
+
 }
 #WelcomeDivRow{
     padding-top: 1%;
@@ -465,7 +489,8 @@ input:focus{
     justify-content: center;    /* Center vertically (if you want full centering) */
 }
 #ChangePsswdDiv {
-  overflow: hidden;
+  overflow: visible;
+  margin-top:10%;
   max-height: 0;
   opacity: 0;
   transition: max-height 1.0s ease, opacity 0.5s ease;
@@ -481,6 +506,10 @@ input:focus{
 #ChangePsswdDiv.hidden {
   max-height: 0;
   opacity: 0;
+}
+#DataDiv{
+    margin-top: 1.25vh;
+    overflow: visible;
 }
 /*------------------------------------------------------------------*/
 /*-------------------------------User Management-----------------------------------*/
