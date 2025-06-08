@@ -1,76 +1,75 @@
-<div id = "OuterContainer" class="hidden">
-  <div class="container" id = "InnerContainer">
-    <div class = "row" id = "WelcomeDivRow">
-      <div class="col" id = "WelcomeDiv">
-        <img src="homepage/img/logo.jpeg" alt="Logo" id="LogoImg" />
-        <h2 id = "WelcomeUserh5">Welcome back</h2>
+<div id="OuterContainer" class="hidden">
+  <div class="container" id="InnerContainer">
+    <div class="row align-items-center" id="WelcomeDivRow">
+      <div class="col-12 col-md-8 text-center text-md-start" id="WelcomeDiv">
+        <img src="homepage/img/logo.jpeg" alt="Logo" id="LogoImg" class="img-fluid" />
+        <h2 id="WelcomeUserh5" class="mt-3">Welcome back</h2>
       </div>
-      <div class="col" id = "EditDiv">
-        <button onclick="EditData()" id = "EditBtn">Edit</button>
+      <div class="col-12 col-md-4 text-center text-md-end" id="EditDiv">
+        <button onclick="EditData()" id="EditBtn" class="btn">Edit</button>
       </div>
     </div>
-    <br>
-    <p>Favourite Game: <span id="FavoriteGameSpan">Loading...</span></p>
+    <p class="my-3">Favourite Game: <span id="FavoriteGameSpan">Loading...</span></p>
 
     <div class="row">
-      <div class = "col" id = "DataDiv">
-        <input id="UserFirstName"></input>
-        <input id="UserLastName"></input>
-        <input id="UserEmail"></input>
-        <button onclick="CreateChangePsswdField()" id="UserPasswordBtn">change password</button>
+      <div class="col-12 col-lg-6" id="DataDiv">
+        <input id="UserFirstName" class="form-control mb-3" placeholder="First Name">
+        <input id="UserLastName" class="form-control mb-3" placeholder="Last Name">
+        <input id="UserEmail" class="form-control mb-3" placeholder="Email">
+        <button onclick="CreateChangePsswdField()" id="UserPasswordBtn" class="btn">Change Password</button>
       </div>
-      <div class="col">
-          <p>Your Scores</p>
-          <div class="overflow-auto" id="ScoreContainer"></div>
-      </div>
-    </div>
-
-    <div id = "ChangePsswdDiv" class="centered-container" >
-      <input id = "UserOldPsswd" type="password" placeholder="enter old password"></input>
-      <input id = "UserNewPsswd" type="password" placeholder="enter new password"></input>
-      <button onclick="CheckUserPasswd()" id = "UserChangePasswordBtn">change</button>
-    </div>
-    <br>
-
-
-    <div class="container">
-      <div class="row justify-content-center gap-3">
-
-        <div class="col-md">
-          <div class="card h-100 games">
-          <img class="card-img-top" src="homepage/img/mindesweeper.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Minesweeper</h5>
-              <p class="card-text">Beschreibung des Spiels.</p>
-              <a onclick="loadPage('game1')" class="btn btn-primary">Play game</a>
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md">
-          <div class="card h-100 games">
-            <img class="card-img-top" src="homepage/img/flappy.webp" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Flappy Bird</h5>
-              <p class="card-text">Noch eine kurze Beschreibung.</p>
-              <a onclick="loadPage('game2')"  href="#" class="btn btn-primary">Play game</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md">
-          <div class="card h-100 games">
-            <img class="card-img-top" src="homepage/img/gameOne.jpeg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Game Three</h5>
-              <p class="card-text">Noch eine kurze Beschreibung.</p>
-              <a href="#" class="btn btn-primary">Play game</a>
-            </div>
-          </div>
-        </div>
-
+      <div class="col-12 col-lg-6">
+        <p>Your Scores</p>
+        <div class="overflow-auto" id="ScoreContainer"></div>
       </div>
     </div>
+
+    <div id="ChangePsswdDiv" class="centered-container ">
+      <input id="UserOldPsswd" type="password" class="form-control mb-3" placeholder="Enter old password">
+      <input id="UserNewPsswd" type="password" class="form-control mb-3" placeholder="Enter new password">
+      <button onclick="CheckUserPasswd()" id="UserChangePasswordBtn" class="btn">Change</button>
+    </div>
+
+
+
+<!--    <div class="container">-->
+<!--      <div class="row justify-content-center gap-3">-->
+
+<!--        <div class="col-md">-->
+<!--          <div class="card h-100 games">-->
+<!--          <img class="card-img-top" src="homepage/img/mindesweeper.jpg" alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Minesweeper</h5>-->
+<!--              <p class="card-text">Beschreibung des Spiels.</p>-->
+<!--              <a onclick="loadPage('game1')" class="btn btn-primary">Play game</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--    -->
+<!--        <div class="col-md">-->
+<!--          <div class="card h-100 games">-->
+<!--            <img class="card-img-top" src="homepage/img/flappy.webp" alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Flappy Bird</h5>-->
+<!--              <p class="card-text">Noch eine kurze Beschreibung.</p>-->
+<!--              <a onclick="loadPage('game2')"  href="#" class="btn btn-primary">Play game</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-md">-->
+<!--          <div class="card h-100 games">-->
+<!--            <img class="card-img-top" src="homepage/img/gameOne.jpeg" alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Game Three</h5>-->
+<!--              <p class="card-text">Noch eine kurze Beschreibung.</p>-->
+<!--              <a href="#" class="btn btn-primary">Play game</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
 

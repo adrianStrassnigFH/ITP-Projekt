@@ -1,7 +1,7 @@
 import { GameLogic } from './core/game-logic.js'
 import { Timer }      from './utils/timer.js'
 import { renderGameBoard } from './ui/renderer.js'
-
+import { showNotification, Type} from "../../notification.js";
 
 class Game {
     constructor() {
@@ -65,8 +65,8 @@ class Game {
         if (cell.isBomb) {
             this.revealAll()
             this.timer.stop()
-            const seconds = Math.floor((Date.now() - this.timer.startTime) / 1000)
-            setTimeout(() => alert(`Verloren! Zeit: ${seconds}s`), 0)
+            const seconds = Math.floor((Date.now() - this.timer.startTime) / 1000);
+            showNotification(`Verloren! Zeit: ${seconds}s`, Type.LOSE);
             this.gameOver = true
             return
         }
@@ -77,7 +77,7 @@ class Game {
             this.timer.stop()
             const seconds = Math.floor((Date.now() - this.timer.startTime) / 1000)
             let score = seconds > 0 ? 500/seconds : 500;
-            setTimeout(() => alert(`Score: ${score}`), 0)
+            showNotification(`Score: ${score}`, Type.SUCCESS);
             const userID = isLoggedIn();
             if(userID){
                 uploadScore(userID,1,this.difficulty,score);
