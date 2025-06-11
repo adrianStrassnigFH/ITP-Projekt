@@ -1,6 +1,7 @@
 
 async function handleProfile(){
-    const userID = sessionStorage.getItem("userID");
+    let loginData = await getLoginStatus();
+    const userID = loginData.userID;
     const formData = new FormData();
     formData.append("userID", userID);
     let userEmail;
@@ -56,7 +57,8 @@ async function EditData(){
     let UserFirstNameInput = document.getElementById("UserFirstName");
     let UserlastNameInput = document.getElementById("UserLastName");
     let UserEmailInput = document.getElementById("UserEmail");
-    const userID = sessionStorage.getItem("userID");
+    let loginData = await getLoginStatus();
+    const userID = loginData.userID;
     const formData = new FormData();
     formData.append("userID", userID);
     formData.append("FirstName", UserFirstNameInput.value);
@@ -94,7 +96,8 @@ function CreateChangePsswdField() {
 
 async function CheckUserPasswd(){
     const oldUserPsswd = document.getElementById("UserOldPsswd");
-    const userID = sessionStorage.getItem("userID");
+    let loginData = await getLoginStatus();
+    const userID = loginData.userID;
     const newUserPsswd = document.getElementById("UserNewPsswd");
     if(oldUserPsswd.value.trim() !== "" && newUserPsswd.value.trim() !== ""){
 
@@ -111,7 +114,6 @@ async function CheckUserPasswd(){
                 alert(response.error);
             }
             else{
-                console.log("Password is correct");
                await UpdatePassword();
                alert("Password updated");
             }
@@ -122,25 +124,26 @@ async function CheckUserPasswd(){
 
 async function UpdatePassword(){
     const newUserPsswd = document.getElementById("UserNewPsswd");
-    const userID = sessionStorage.getItem("userID");
+    let loginData = await getLoginStatus();
+    const userID = loginData.userID;
 
-        const formData = new FormData();
-        formData.append("userID", userID);
-        formData.append("password", newUserPsswd.value);
+    const formData = new FormData();
+    formData.append("userID", userID);
+    formData.append("password", newUserPsswd.value);
 
-        try{
-            let response = await fetch("../api/auth/update_user_passwd.php", {
-                method: "POST",
-                body: formData,
-            })
-            response = await response.json();
-            if(!response.success){
-                alert(response.error);
-            }
-            else{
-                console.log("Password is correct");
-            }
-        }catch(error){
-            console.error("Login failed: ", error);
+    try{
+        let response = await fetch("../api/auth/update_user_passwd.php", {
+            method: "POST",
+            body: formData,
+        })
+        response = await response.json();
+        if(!response.success){
+            alert(response.error);
         }
+        else{
+            alert("Password updated");
+        }
+    }catch(error){
+        console.error("Login failed: ", error);
+    }
 }

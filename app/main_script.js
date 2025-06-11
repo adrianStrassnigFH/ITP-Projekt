@@ -39,12 +39,10 @@ function loadPage(pageKey){
     .then(html => {
         document.getElementById("content").innerHTML = html;
 
-        console.log(pages_dictionary[pageKey][1]);
         if(pages_dictionary[pageKey][1] !== undefined && pages_dictionary[pageKey][1] !== null) {
             if (pages_dictionary[pageKey][3]) {
                 import("./" + pages_dictionary[pageKey][1] + '?v=' + new Date().getTime())
                     .then(module => {
-                        console.log("Module loaded", module);
                     })
                     .catch(err => console.error("Module failed to load", err));
             } else {
@@ -68,33 +66,25 @@ function animation(){
 
 }
 
-function login(userID, isAdmin){
-    sessionStorage.setItem("userID",userID);
-    sessionStorage.setItem("isAdmin",isAdmin);
+function login(){
     updateNavbar();
     loadPage("homepage")
 }
 
-function logout(){
-    sessionStorage.removeItem("userID");
-    sessionStorage.removeItem("isAdmin");
-    console.log("logout");
-    loadPage("homepage")
-    location.reload(); 
+async function logout(){
+    await fetch('/api/auth/logout.php');
     loadPage("homepage")
     location.reload(); 
 }
 
-function isLoggedIn(){
-    return sessionStorage.getItem("userID");
+async function getLoginStatus(){
+    let resp = await fetch("/api/auth/get_login_status.php");
+    return await resp.json();
 }
 
-function isAdmin(){
-    return sessionStorage.getItem("isAdmin");
-}
-
-function updateNavbar(){
-    if(!isLoggedIn()) return;
+async function updateNavbar(){
+    let loginData = await getLoginStatus();
+    if(!loginData.status) return;
 
     let loginLink = document.getElementById("login-link");
     loginLink.innerText = "Profile";
@@ -114,8 +104,7 @@ function updateNavbar(){
 
     logoutLinkLi.appendChild(logoutLink);
 
-    if(isAdmin() === "1"){
-        console.log("admin");
+    if(loginData.isAdmin){
         let manageUsersLi = document.createElement("li");
         manageUsersLi.classList.add("nav-item");
         let manageUsersLink = document.createElement("a");
@@ -134,7 +123,6 @@ function updateNavbar(){
 }
 
 function uploadScore(userID, gameID, difficultyID, score){
-    console.log(difficultyID)
     let formData = new FormData();
     formData.append("userID",userID);
     formData.append("gameID",gameID);
@@ -146,7 +134,6 @@ function uploadScore(userID, gameID, difficultyID, score){
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
         })
 }
 

@@ -9,7 +9,6 @@ class Game {
         this.gameOver = false
         this.timer = new Timer('timer')
         this.init()
-        console.log("Game started");
     }
 
     init() {
@@ -76,12 +75,15 @@ class Game {
         if (this.checkWin()) {
             this.timer.stop()
             const seconds = Math.floor((Date.now() - this.timer.startTime) / 1000)
-            let score = seconds > 0 ? 500/seconds : 500;
+            let score = seconds > 0 ? Math.floor(500/seconds)  : 500;
             showNotification(`Score: ${score}`, Type.SUCCESS);
-            const userID = isLoggedIn();
-            if(userID){
-                uploadScore(userID,1,this.difficulty,score);
-            }
+            getLoginStatus().then(data => {
+                    if(data.status){
+                        uploadScore(data.userID,1,this.difficulty,score);
+                    }
+                }
+            );
+
             this.gameOver = true
         }
     }

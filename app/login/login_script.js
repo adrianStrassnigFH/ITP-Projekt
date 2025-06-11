@@ -20,7 +20,7 @@ async function handleLogin(){
 
         response = await response.json();
         if(response.success){
-            login(response.userID,response.isAdmin);
+            login();
         }
         else{
             alert(response.error);

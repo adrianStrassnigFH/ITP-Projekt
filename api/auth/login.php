@@ -3,6 +3,8 @@
 require_once "../database/dbconnect.php";
 require_once "../helper.php";
 
+session_start();
+
 header("Content-Type: application/json");
 $response = [];
 
@@ -33,8 +35,8 @@ if($result->num_rows == 0){
 $user = $result->fetch_object();
 if(password_verify($password,$user->Password)){
     $response["success"] = true;
-    $response["userID"] = $user->UserID;
-    $response["isAdmin"] = $user->isAdmin;
+    $_SESSION["userID"] = $user->UserID;
+    $_SESSION["isAdmin"] = $user->isAdmin;
 }else{
     $response["error"] = "Invalid login credentials";
 }

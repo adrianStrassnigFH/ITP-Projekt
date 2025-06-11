@@ -42,7 +42,6 @@ class GameManager {
     addPoint(){
         this.#score++;
         this.updateScoreDisplay();
-        console.log(`Points scored!`);
     }
     resetScore(){
         this.#score = 0;
@@ -56,7 +55,6 @@ class GameManager {
         this.Map.initializeMap();
         this.Map.moveObstacles();
         this.Map.startCollisionDetection(this.Bird.birdLogo, () => {
-            console.log("collision with obstacle triggered");
             this.Map.stopObstacles();
             this.Bird.stopMovement();
             this.#gameGoing = false;
@@ -72,11 +70,9 @@ class GameManager {
         //the empty function inside birdMovement is used to check if the bird is alive
         //as soon as the bird lands the gameOver() function performs the stopObstacles function(game ends)
         this.Bird.birdMovement(() => {
-            console.log("game over triggered");
             this.Map.stopObstacles();
             this.#gameGoing = false;
             this.startButton.classList.add("show");
-            console.log(" game over button appearing triggered");
         });
 
     }
@@ -128,14 +124,11 @@ class Bird{
             }
 
 
-            console.log(this.#birdTop);
 
             if (this.#birdTop + this.#birdHeight >= this.#parentHeight) {
                 this.#birdTop = this.#parentHeight - this.birdLogo.offsetHeight;
-                console.log("inside the if statement" + this.#birdTop);
                 this.#velocityY = 0;
                 clearInterval(moveInterval);
-                console.log("gameover");
                 if(gameOver) gameOver();
             }
 
@@ -287,8 +280,6 @@ class Map{
 
             for (const obstacle of this.#allObstacles) {
                 const obsRect = obstacle.getBoundingClientRect();
-                console.log("birdRect.right: "+birdRect.right);
-                console.log("obstRect.left"+ obsRect.left);
 
                 const isCollision =
                     adjustedBirdRect.left < obsRect.right &&

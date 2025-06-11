@@ -34,7 +34,8 @@ async function editUserData(userID){
 }
 
 async function deleteUser(userID){
-    if(isLoggedIn() == userID) {
+    let loginData = await getLoginStatus();
+    if(loginData.userID === userID) {
         alert ("You can't delete yourself");
         return;
     }
@@ -113,6 +114,7 @@ async function buildUserTable(){
         const userTable = document.getElementById("userTable");
 
 
+        let loginData = await getLoginStatus();
 
 
         users.forEach(user => {
@@ -124,7 +126,7 @@ async function buildUserTable(){
                 <input value="${user.Email}" class="userInput big" id="email${user.UserID}">
                 <input placeholder="new password" class="userInput" type="password" id="password${user.UserID}">
                 
-                ${user.UserID == isLoggedIn()?"Admin":"" +
+                ${user.UserID === loginData.userID ?"Admin":"" +
                 '<select id="role'+user.UserID+ '" class="roleSelect">' +
                 '<option value="0">User</option>' +
                 '<option value="1"' + (user.isAdmin?"selected":"")+ '>Admin</option>' +
