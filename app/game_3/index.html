@@ -1,0 +1,27 @@
+<link href="../css/game1.css" rel="stylesheet">
+<h1 id="title">ARKANOID</h1>
+
+<div class="game-wrapper">
+     <div class="game-header">
+          <div class="score">Score: <span id="score">0</span></div>
+          <div class="controls">
+               <div class="controls-top">
+                    <label for="difficulty">Difficulty:</label>
+                    <select id="difficulty">
+                         <option value="1">Level 1</option>
+                         <option value="2">Level 2</option>
+                         <option value="3">Level 3</option>
+                    </select>
+               </div>
+               <div class="controls-bottom" id="timer">Time: 0s</div>
+          </div>
+          <div class="lives">Lives: <span id="lives">3</span></div>
+     </div>
+     <div class="game-area">
+          <canvas id="mycanvas"></canvas>
+     </div>
+     <div class="game-footer">
+          <button id="reset-button">Reset Game</button>
+     </div>
+</div>
+

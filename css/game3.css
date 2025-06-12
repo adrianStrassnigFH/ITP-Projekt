@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+    text-shadow: 3px 3px 0 #dd00dd;
+}
+
+.game-wrapper {
+    width: 535px;
+    margin: 0 auto;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+}
+
+.score, .lives {
+    font-size: 14px;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.controls-top label {
+    font-size: 14px;
+    color: #fff;
+}
+
+.controls-top select {
+    font-size: 14px;
+    padding: 4px 8px;
+    background-color: #cc66ff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.controls-top select:hover {
+    background-color: #9900cc !important;
+}
+
+.controls-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+.game-area {
+    border: 2px solid #dd00dd;
+    margin-bottom: 10px;
+}
+
+#mycanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: url('../app/game_3/src/images/Background.png') center/cover no-repeat;
+}
+
+.game-footer {
+    text-align: center;
+    margin-top: 4px;
+}
+
+#reset-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #cc66ff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+#reset-button:hover {
+    background-color: #9900cc;
+}
