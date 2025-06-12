@@ -260,9 +260,23 @@ class Map{
                 this.#pair2.style.left = pair2leftValue + "%";
                 this.#pair3.style.left = pair3leftValue + "%";
                 
-                 pair1leftValue-=0.1
-                pair2leftValue-=0.1
-                 pair3leftValue-=0.1
+                  let speed_value;
+                    switch(this.#difficulty_div.innerHTML){
+                        case "easy":
+                            speed_value = 0.1;
+                            break;
+                        case "medium":
+                            speed_value = 0.2;
+                            break;
+                        case "hard":
+                            speed_value = 0.3;
+                    break;
+                    }
+
+
+                 pair1leftValue-=speed_value
+                pair2leftValue-=speed_value
+                 pair3leftValue-=speed_value
                 //checks in each interval if the obstacles need to be regenerated,
                 // if yes, that values get modified
                 //otherwise they will be returned unchanged
