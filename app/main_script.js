@@ -129,7 +129,7 @@ function uploadScore(userID, gameID, difficultyID, score){
     formData.append("gameID",gameID);
     formData.append("difficultyID",difficultyID);
     formData.append("score", score);
-    fetch("../../api/scores/upload_game_score.php", {
+    fetch("./../api/scores/upload_game_score.php", {
         method: "POST",
         body: formData,
     })
