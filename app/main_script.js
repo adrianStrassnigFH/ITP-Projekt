@@ -78,7 +78,7 @@ async function logout(){
 }
 
 async function getLoginStatus(){
-    let resp = await fetch("/api/auth/get_login_status.php");
+    let resp = await fetch("../api/auth/get_login_status.php");
     return await resp.json();
 }
 
