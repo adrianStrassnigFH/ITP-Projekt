@@ -5,7 +5,8 @@ async function handleLogin(){
     const password = document.getElementById("password").value.trim();
 
     if(email === '' || password === ''){
-        alert("Please enter a valid data");
+        // alert("Please enter a valid data");
+        showNotification("Please enter valid data",'error' );
         return;
     }
 
@@ -23,7 +24,9 @@ async function handleLogin(){
             login();
         }
         else{
-            alert(response.error);
+            // alert(response.error);
+            showNotification(response.error, 'error');
+
         }
     }catch(error){
         console.error("Login failed: ", error);

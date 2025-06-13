@@ -1,7 +1,6 @@
 import { GameLogic } from './core/game-logic.js'
 import { Timer }      from './utils/timer.js'
 import { renderGameBoard } from './ui/renderer.js'
-import { showNotification, Type} from "../../notification.js";
 
 class Game {
     constructor() {

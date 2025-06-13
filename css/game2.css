@@ -13,7 +13,8 @@
     z-index: 9999;
 
     margin-top: 5vh;
-    background-image: url("./../app/game_2/flappy-bird-bg.jpg");
+    background-image: url("/app/game_2/flappy-bird-bg.jpg");
+    /*background-image: url("./../app/game_2/flappy-bird-bg.jpg");*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

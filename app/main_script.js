@@ -49,6 +49,7 @@ function loadPage(pageKey){
             } else {
                 const script = document.createElement("script");
                 script.src = pages_dictionary[pageKey][1];
+
                 script.setAttribute("data-dynamic", "true");
                 document.body.appendChild(script);
             }

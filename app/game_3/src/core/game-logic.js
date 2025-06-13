@@ -133,7 +133,9 @@ export class GameLogic {
                 if (this.lives === 0) {
                     this.timer.stop();
                     const elapsed = Math.floor((Date.now() - this.timer.startTime) / 1000);
-                    alert(`Game Over! Time: ${elapsed}s`);
+                    // alert(`Game Over! Time: ${elapsed}s`);
+                    showNotification(`Game Over! Time: ${elapsed}s`,'error' );
+
                     window.location.reload();
                 } else {
                     this.resetBall();
@@ -156,7 +158,9 @@ export class GameLogic {
                     if (this.score === this.brickRowCount * this.brickColumnCount) {
                         this.timer.stop();
                         const elapsed = Math.floor((Date.now() - this.timer.startTime) / 1000);
-                        alert(`You Win! Time: ${elapsed}s`);
+                        // alert(`You Win! Time: ${elapsed}s`);
+                        showNotification(`You Win! Time: ${elapsed}`, 'success');
+
                         window.location.reload();
                     }
                 }

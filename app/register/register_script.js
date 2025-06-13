@@ -8,12 +8,15 @@ async function handleRegister(){
     const password_confirmation = document.getElementById("passwordWH").value.trim();
 
     if(fname === '' || lname === '' || email === '' || password === '' || password_confirmation === ''){
-        alert("Please enter a valid data");
+        // alert("Please enter a valid data");
+        showNotification("Please enter valid data",'error' );
+
         return;
     }
 
     if(password !== password_confirmation){
-        alert("Passwords don't match");
+        showNotification("Passwords don't match",'error' );
+        // alert("Passwords don't match");
         return;
     }
 
@@ -33,7 +36,9 @@ async function handleRegister(){
             login(response.userID);
         }
         else{
-            alert(response.error);
+            // alert(response.error);
+            showNotification(`${response.error}`, 'error');
+
         }
     }catch(error){
         console.error("Login failed: ", error);

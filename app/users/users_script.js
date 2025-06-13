@@ -20,11 +20,14 @@ async function editUserData(userID){
         })
         response = await response.json();
         if(!response.success){
-            alert(response.error);
+            // alert(response.error);
+            showNotification(response.error, 'error');
             loadPage("manageUsers");
         }
         else{
-            alert("Data updated");
+            // alert("Data updated");
+            showNotification("Data updated", 'success');
+
             loadPage("manageUsers");
         }
     }catch(error){
@@ -36,7 +39,9 @@ async function editUserData(userID){
 async function deleteUser(userID){
     let loginData = await getLoginStatus();
     if(loginData.userID === userID) {
-        alert ("You can't delete yourself");
+        // alert ("You can't delete yourself");
+        showNotification("You can't delete yourself", 'error');
+
         return;
     }
 
@@ -49,10 +54,13 @@ async function deleteUser(userID){
         })
         response = await response.json();
         if(!response.success){
-            alert(response.error);
+            // alert(response.error);
+            showNotification(`${response.error}`,'error');
         }
         else{
-            alert("User deleted");
+            // alert("User deleted");
+            showNotification("User deleted", 'success');
+
             loadPage("manageUsers")
         }
     }catch(error){
@@ -69,7 +77,8 @@ async function addUser(){
     const isAdmin = document.getElementById("role").value;
 
     if(fname === '' || lname === '' || email === '' || password === ''){
-        alert("Please enter valid data");
+        // alert("Please enter valid data");
+        showNotification("Please enter valid data", 'error');
         return;
     }
 
@@ -86,11 +95,13 @@ async function addUser(){
 
         response = await response.json();
         if(response.success){
-            alert("User created");
+            // alert("User created");
+            showNotification("User created", 'success');
             loadPage("manageUsers");
         }
         else{
-            alert(response.error);
+            // alert(response.error);
+            showNotification(`${response.error}`,'error');
 
         }
     }catch(error){

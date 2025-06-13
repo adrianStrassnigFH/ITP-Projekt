@@ -1,9 +1,8 @@
-export const Type = {
+ const Type = {
     LOSE: 'error',
     SUCCESS: 'success'
 };
-
-export function showNotification(message, notificationType) {
+ function showNotification(message, notificationType) {
     let existing = document.querySelector('.notification');
     if (existing) existing.remove(); // remove any existing popup
 

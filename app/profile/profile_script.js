@@ -45,7 +45,8 @@ async function handleProfile(){
             favGameSpan.textContent = response.FavoriteGame || "None";
         }
         else{
-            alert(response.error);
+            // alert(response.error);
+            showNotification(response.error, Type.LOSE);
         }
     }catch(error){
         console.error("Login failed: ", error);
@@ -72,10 +73,12 @@ async function EditData(){
         })
         response = await response.json();
         if(!response.success){
-            alert(response.error);
+            // alert(response.error);
+            showNotification(response.error, Type.LOSE);
         }
         else{
-            alert("Data updated");
+            // alert("Data updated");
+            showNotification("Data updated", Type.SUCCESS);
         }
     }catch(error){
         console.error("Login failed: ", error);
@@ -111,14 +114,18 @@ async function CheckUserPasswd(){
             })
             response = await response.json();
             if(!response.success){
-                alert(response.error);
+                // alert(response.error);
+                showNotification(response.error, 'error');
+
             }
             else{
                await UpdatePassword();
-               alert("Password updated");
+               // alert("Password updated");
             }
     }else{
-        alert("old- or new password is empty");
+        // alert("old- or new password is empty");
+        showNotification("old- or new password is empty", 'error');
+
     }
 }
 
@@ -138,10 +145,12 @@ async function UpdatePassword(){
         })
         response = await response.json();
         if(!response.success){
-            alert(response.error);
+            // alert(response.error);
+            showNotification(`${response.error}`, 'error');
         }
         else{
-            alert("Password updated");
+            // alert("Password updated");
+            showNotification("Password updated", 'success');
         }
     }catch(error){
         console.error("Login failed: ", error);
