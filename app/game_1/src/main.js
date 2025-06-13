@@ -8,6 +8,7 @@ class Game {
         this.logic = null
         this.gameOver = false
         this.timer = new Timer('timer')
+        window.scrollTo(0, 0);
         this.init()
     }
 

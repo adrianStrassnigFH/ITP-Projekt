@@ -5,6 +5,8 @@ const select = document.getElementById('difficulty')
 const resetBtn = document.getElementById('reset-button')
 const timer = new Timer('timer')
 const game = new GameLogic(parseInt(select.value, 10), timer)
+window.scrollTo(0, 0);
+
 
 timer.reset()
 
