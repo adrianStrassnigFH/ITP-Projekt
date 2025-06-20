@@ -135,8 +135,13 @@ export class GameLogic {
                     const elapsed = Math.floor((Date.now() - this.timer.startTime) / 1000);
                     // alert(`Game Over! Time: ${elapsed}s`);
                     showNotification(`Game Over! Time: ${elapsed}s`,'error' );
-
-                    window.location.reload();
+                    // insert score into database
+                    getLoginStatus().then(data => {
+                        if(data.status){
+                            uploadScore(data.userID,3,this.difficulty-1,this.score);
+                        }
+                    });
+                   window.location.reload();
                 } else {
                     this.resetBall();
                 }
@@ -160,7 +165,12 @@ export class GameLogic {
                         const elapsed = Math.floor((Date.now() - this.timer.startTime) / 1000);
                         // alert(`You Win! Time: ${elapsed}s`);
                         showNotification(`You Win! Time: ${elapsed}`, 'success');
-
+                         console.log("Inserting data in db");
+                        getLoginStatus().then(data => {
+                            if(data.status){
+                                uploadScore(data.userID,3,this.difficulty-1,this.score);
+                            }
+                        });
                         window.location.reload();
                     }
                 }
