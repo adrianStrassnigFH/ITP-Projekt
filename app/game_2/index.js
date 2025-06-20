@@ -212,11 +212,9 @@ class Map{
     }
     initializeMap(){
         this.#count_stop_id = setInterval(() => {
-            this.#count += 1;  // Increment the counter each second
+            this.#count += 1; 
             this.#score_div.innerHTML = this.#count;
-            console.log(this.#count);  // Log the current counter value
 
-            // Stop the counter when a condition is met (e.g., when count reaches 10)
             if (this.#count_stop == true) {
                 this.stopCounter();
             }
@@ -337,7 +335,6 @@ class Map{
                 if (isCollision) {
                     clearInterval(this.#collisionInterval);
                      clearInterval(this.#count_stop_id);  // Stop the interval
-                    console.log("Counter stopped");
                     console.log("Resetting score");  // Log the current counter value
                     //Add in DB
                     let final_count = this.#count;
@@ -355,8 +352,6 @@ class Map{
                                     difficulty_value = 2;
                                     break;
                             }
-                             console.log(this.#difficulty_div.innerHTML + "div");
-                            console.log(difficulty_value);
                               console.log(final_count);
 
                             uploadScore(data.userID,2,difficulty_value,final_count);
