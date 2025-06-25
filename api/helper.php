@@ -1,5 +1,5 @@
 <?php
-function test_input($data)
+function test_input($data): string
 {
     $data = trim($data); // removes spaces,tabs,newlines
     $data = stripslashes($data); // removes slashes /
@@ -7,7 +7,8 @@ function test_input($data)
     return $data;
 }
 
-function isEmailTaken($email,$connection){
+function isEmailTaken($email,$connection): bool
+{
     $sql = 'SELECT * FROM User WHERE Email=?';
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("s",$email);

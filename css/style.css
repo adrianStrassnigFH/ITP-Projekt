@@ -34,14 +34,15 @@
 /*-------------------------------------------------------------------*/
 /*-------------------------------LANDING PAGE------------------------*/
 #welcome-section{
-    width: 100vw;
     height: 100vh;
+    width: 100vw;
     background-image: url("../app/homepage/img/q208tysvetrb1.png");
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+
     display: grid;
     place-items: center;
+    background-size: cover !important;
+    background-position: center;
 
 }
 
@@ -249,9 +250,11 @@
     align-items: center;
     justify-content: center;
     margin-top: -6vh;
+    padding-top: 12vh;
 }
 h1{
     margin-top: 10%;
+    text-align: center;
 }
 .faq-item{
     width:50%;
@@ -270,6 +273,13 @@ h1{
 .faq-question{
     padding-bottom:10px;
     font-size:1.2rem;
+}
+
+@media (max-width: 768px) {
+    .faq-item{
+        width: 90%;
+    }
+
 }
 /*-------------------------------FORM PAGE--------------------------------*/
 .form{
@@ -295,7 +305,7 @@ input{
     border-radius: 5px;
     margin: 2vh ;
     padding: 20px;
-    min-width:fit-content;
+    max-width: 80%;
     box-shadow: 2px 2px 2px #dd00dd;
 
 }
@@ -326,6 +336,7 @@ input:focus{
     border: none;
     padding: 1vh;
     font-size: 2vh;
+    max-width: 90%;
 
 
 }
@@ -339,6 +350,7 @@ input:focus{
 /*-------------------------------IMPRESSUM-----------------------------------*/
 .impressum-page{
     margin-top:-6vh;
+    padding-top: 12vh;
     background-color: #0b001e;
     min-height: 100vh;
     width: 100%;
@@ -371,7 +383,15 @@ input:focus{
 
 }
 /*MS ganz*/
-
+@media (max-width: 768px) {
+    .impressum h1{
+        margin: 0;
+        padding-block: 10%;
+    }
+    .impressum{
+        width: 90%;
+    }
+}
 
 
 /*------------------------------------------------------------------*/
@@ -388,7 +408,7 @@ input:focus{
 }
 #InnerContainer{
     margin: 10vh ;
-    padding: 100px;
+    padding-inline: 4vw;
     border:none;
     border-radius: 15px;
     box-shadow:none;
@@ -476,10 +496,15 @@ input:focus{
 }
 #UserFirstName, #UserLastName, #UserEmail, #UserOldPsswd, #UserNewPsswd{
     color: white;
+
     text-shadow: 1px 1px 0 #dd00dd;
     padding-left: 3%;
     font-size: small;
     margin: 1%;
+}
+
+#UserOldPsswd::placeholder, #UserNewPsswd::placeholder{
+    color: grey;
 }
 
 #LogoImg{
@@ -585,10 +610,20 @@ input:focus{
     border: 2px solid #dd00dd;
     border-radius: 8px;
     padding: 10px;
-    font-size: 0.6vw;
     font-family: 'Press Start 2P', system-ui;
     text-shadow: 1px 1px 0 #dd00dd;
     box-shadow: 2px 2px 0 #dd00dd;
     outline: none;
+    width: 150px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 1400px) {
+    .userRow{
+        flex-direction: column;
+    }
+    .userContainer{
+        margin: 0 ;
+    }
+
 }

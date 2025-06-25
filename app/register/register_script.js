@@ -33,7 +33,7 @@ async function handleRegister(){
 
         response = await response.json();
         if(response.success){
-            login(response.userID);
+            login();
         }
         else{
             // alert(response.error);

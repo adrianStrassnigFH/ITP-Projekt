@@ -2,7 +2,7 @@
 
 require_once "../database/dbconnect.php";
 require_once "../helper.php";
-
+session_start();
 header("Content-Type: application/json");
 $response = [];
 
@@ -31,7 +31,10 @@ $dbPassword = password_hash($password,PASSWORD_DEFAULT);
 $stmt->bind_param("issss", $isAdmin, $email,$dbPassword,$fname, $lname);
 if ($stmt->execute()) {
     $response["success"] = true;
-    $response["userID"] = $db_obj->insert_id;
+    $userID = $db_obj->insert_id;
+    $response["userID"] = $userID;
+    $_SESSION["userID"] = $userID;
+    $_SESSION["isAdmin"] = false;
 } else {
     $response["error"] = "Database error: " . $stmt->error;
 }
