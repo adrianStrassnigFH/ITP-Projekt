@@ -1,10 +1,17 @@
 body {
     margin: 0;
     padding: 20px;
-    color: #fff;
+    background-color: black;
     text-shadow: 3px 3px 0 #dd00dd;
 }
-
+#title {
+    color: violet;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #9900cc;
+    text-align: center;
+}
 .game-wrapper {
     width: 535px;
     margin: 0 auto;
@@ -31,12 +38,14 @@ body {
 
 .controls-top {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .controls-top label {
     font-size: 14px;
+    align-items: center;
     color: #fff;
 }
 
@@ -62,7 +71,7 @@ body {
 
 .game-area {
     border: 2px solid #dd00dd;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #mycanvas {

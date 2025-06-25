@@ -11,6 +11,7 @@ export class GameLogic {
     paddleHeight = 10;
 
     constructor(difficulty = 1, timer) {
+        this.isGameOver = false;
         this.difficulty = difficulty;
         this.timer = timer;
         this.renderer = new RenderBoard('mycanvas');
@@ -22,7 +23,7 @@ export class GameLogic {
         this.resetGame();
         document.addEventListener('mousemove', this.handleMouseMove.bind(this));
         this.renderer.canvas.addEventListener('click', () => {
-            if (!this.isStarted) {
+            if (!this.isStarted && !this.isGameOver) {
                 this.isStarted = true;
                 if (!this.hasTimerStarted) {
                     this.timer.start();
@@ -81,6 +82,7 @@ export class GameLogic {
     }
 
     resetGame() {
+        this.isGameOver = false;
         this.applyDifficulty();
         this.score = 0;
         this.lives = this.maxLives;
@@ -98,7 +100,7 @@ export class GameLogic {
     handleMouseMove(e) {
         const rect = this.renderer.canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
-        if (x > 0 && x < this.canvasWidth) {
+        if (!this.isGameOver && x > 0 && x < this.canvasWidth) {
             this.paddleX = x - this.paddleWidth / 2;
         }
     }
@@ -131,6 +133,8 @@ export class GameLogic {
             } else {
                 this.lives--;
                 if (this.lives === 0) {
+                    this.isGameOver = true;
+                    this.isStarted = false;
                     this.timer.stop();
                     const elapsed = Math.floor((Date.now() - this.timer.startTime) / 1000);
                     // alert(`Game Over! Time: ${elapsed}s`);
@@ -141,7 +145,6 @@ export class GameLogic {
                             uploadScore(data.userID,3,this.difficulty-1,this.score);
                         }
                     });
-                   window.location.reload();
                 } else {
                     this.resetBall();
                 }
@@ -162,6 +165,8 @@ export class GameLogic {
                     this.score++;
                     if (this.score === this.brickRowCount * this.brickColumnCount) {
                         this.timer.stop();
+                        this.isStarted = false;
+                        this.isGameOver = true;
                         const elapsed = Math.floor((Date.now() - this.timer.startTime) / 1000);
                         // alert(`You Win! Time: ${elapsed}s`);
                         showNotification(`You Win! Time: ${elapsed}`, 'success');
@@ -171,7 +176,6 @@ export class GameLogic {
                                 uploadScore(data.userID,3,this.difficulty-1,this.score);
                             }
                         });
-                        window.location.reload();
                     }
                 }
             }
