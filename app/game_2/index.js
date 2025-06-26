@@ -1,7 +1,7 @@
 class GameManager {
     constructor() {
         this.Bird = new Bird();
-        this.Map = new Map();
+        this.Map = new Map(this);
         this.startButton = document.getElementById("start");
         this.#gameWindow = this.Bird.birdLogo.parentElement;
 
@@ -49,20 +49,21 @@ class GameManager {
     }
 
     updateScoreDisplay() {
-        //this.scoreDisplay.textContent = `Score : ${this.#score}`;
+        this.scoreDisplay.textContent = `Score : ${this.score}`;
     }
 
     addPoint() {
-        this.#score++;
+        this.score++;
         this.updateScoreDisplay();
     }
 
     resetScore() {
-        this.#score = 0;
+        this.score = 0;
         this.updateScoreDisplay();
     }
 
     startGame() {
+        this.resetScore()
         console.log("Starting game with difficulty:", this.difficulty);
         this.#div_diff.innerHTML = this.difficulty;
         this.Map.stopObstacles();
@@ -100,7 +101,7 @@ class GameManager {
     #gameGoing = false;
     #gameWindow;
     scoreDisplay;
-    #score = 0;
+    score = 0;
     #div_diff = document.getElementById("chosen_diff");
 }
 
@@ -146,7 +147,7 @@ class Bird{
             if (this.#birdTop + this.#birdHeight >= this.#parentHeight) {
                 this.#birdTop = this.#parentHeight - this.birdLogo.offsetHeight;
                 this.#velocityY = 0;
-                clearInterval(moveInterval);
+                clearInterval(this.#moveInterval);
                 if(gameOver) {
                     gameOver();
                 }   
@@ -161,7 +162,7 @@ class Bird{
         }, 10);
 
         // Return the interval ID so it can be cleared from outside if needed
-        return moveInterval;
+        return this.#moveInterval;
     }
     #velocityY;
     #gravity;
@@ -174,7 +175,7 @@ class Bird{
     }
 
 class Map{
-    constructor(){
+    constructor(gameManager){
         this.#obstacle1 = document.getElementById("obstacle1");
         this.#obstacle2 = document.getElementById("obstacle2");
         this.#obstacle3 = document.getElementById("obstacle3");
@@ -184,7 +185,7 @@ class Map{
         this.#pair1 = document.getElementById("pair1");
         this.#pair2 = document.getElementById("pair2");
         this.#pair3 = document.getElementById("pair3");
-
+        this.gameManager = gameManager;
         this.#allObstacles = [
             this.#obstacle1,
             this.#obstacle2,
@@ -211,14 +212,7 @@ class Map{
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     initializeMap(){
-        this.#count_stop_id = setInterval(() => {
-            this.#count += 1; 
-            this.#score_div.innerHTML = this.#count;
 
-            if (this.#count_stop == true) {
-                this.stopCounter();
-            }
-        }, 1000); 
 
 
         this.#passedPairs.clear();
@@ -232,11 +226,11 @@ class Map{
         this.#pair1.style.left = "100%";
         this.#pair2.style.left = "140%";
         this.#pair3.style.left = "180%";
-        this.#pair1.style.top = this.getRandomNumber(0,30) + "%"
+        this.#pair1.style.top = this.getRandomNumber(-25,0) + "%"
 
-        this.#pair2.style.top = this.getRandomNumber(0,30) + "%"
+        this.#pair2.style.top = this.getRandomNumber(-25,0) + "%"
 
-        this.#pair3.style.top = this.getRandomNumber(0,30) + "%"
+        this.#pair3.style.top = this.getRandomNumber(-25,0) + "%"
         
 
 
@@ -289,14 +283,14 @@ class Map{
     }
     regenerateObstacle(pair1leftValue, pair2leftValue, pair3leftValue){
         if(pair1leftValue <= -10){
-            this.#pair1.style.top = this.getRandomNumber(0,30) + "%"
+            this.#pair1.style.top = this.getRandomNumber(-25,0) + "%"
             this.#pair1.style.left = 100 + "%";
             pair1leftValue = 100;
             this.#passedPairs.delete(this.#pair1)
         }
         if(pair2leftValue <= -10){
 
-            this.#pair2.style.top = this.getRandomNumber(0,30) + "%"
+            this.#pair2.style.top = this.getRandomNumber(-25,0) + "%"
             this.#pair2.style.left = 100 + "%";
             pair2leftValue = 100;
             this.#passedPairs.delete(this.#pair2)
@@ -304,7 +298,7 @@ class Map{
         }
         if(pair3leftValue <= -10){
 
-            this.#pair3.style.top = this.getRandomNumber(0,30) + "%"
+            this.#pair3.style.top = this.getRandomNumber(-25,0) + "%"
             this.#pair3.style.left = 100 + "%";
             pair3leftValue = 100;
             this.#passedPairs.delete(this.#pair3)
@@ -334,10 +328,9 @@ class Map{
 
                 if (isCollision) {
                     clearInterval(this.#collisionInterval);
-                     clearInterval(this.#count_stop_id);  // Stop the interval
                     console.log("Resetting score");  // Log the current counter value
                     //Add in DB
-                    let final_count = this.#count;
+                    let final_count = this.gameManager.score;
                     getLoginStatus().then(data => {
                         if(data.status){
                             let difficulty_value;
@@ -354,10 +347,9 @@ class Map{
                             }
                               console.log(final_count);
 
-                            uploadScore(data.userID,2,difficulty_value,final_count);
+                            uploadScore(data.userID,2,difficulty_value, final_count);
                         }
-                    } ); 
-                    this.#count = 0;
+                    } );
                     if (onCollision) onCollision();
                     break;
                 }
@@ -397,7 +389,6 @@ class Map{
     #passedPairs;
     #gameInterval;
     #my_score = 0;
-    #score_div = document.getElementById("score");
     #count = 0; // Initial counter value
     #count_stop_id = null;  // To store the interval ID for clearing it
     #count_stop = false;
